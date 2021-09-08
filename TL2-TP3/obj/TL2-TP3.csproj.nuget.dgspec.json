@@ -49,6 +49,14 @@
             "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": {
               "target": "Package",
               "version": "[5.0.9, )"
+            },
+            "NLog": {
+              "target": "Package",
+              "version": "[4.7.*, )"
+            },
+            "NLog.Web.AspNetCore": {
+              "target": "Package",
+              "version": "[4.9.*, )"
             }
           },
           "imports": [

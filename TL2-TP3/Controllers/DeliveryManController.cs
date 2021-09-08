@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,14 @@ namespace TL2_TP3.Controllers
 {
     public class DeliveryManController : Controller
     {
+
+        private readonly ILogger<DeliveryManController> _logger;
+
+        public DeliveryManController(ILogger<DeliveryManController> logger)
+        {
+            _logger = logger;
+        }
+
         // GET: DeliveryManController
         public ActionResult Index()
         {
