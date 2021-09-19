@@ -2,4 +2,12 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    ViewData["Title"] = "Create DeliveryMan";
 }
+
+<form asp-area="" asp-controller="DeliveryMan" asp-action="Create" class="container w-50">
+    <input type="text" class="form-control my-3" name="Name" placeholder="Name" />
+    <input type="text" class="form-control my-3" name="Address" placeholder="Address" />
+    <input type="number" class="form-control my-3" name="Phone" placeholder="Basic Salary" />
+    <input type="submit" class="btn btn-primary my-3 w-75" value="Send" />
+</form>
