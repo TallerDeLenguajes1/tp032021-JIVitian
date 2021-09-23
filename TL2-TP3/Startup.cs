@@ -8,11 +8,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TL2_TP3.Models;
 
 namespace TL2_TP3
 {
     public class Startup
     {
+        static List<DeliveryMan> deliveries = new List<DeliveryMan>();
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -23,8 +26,9 @@ namespace TL2_TP3
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton(NLog.LogManager.GetCurrentClassLogger());
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
+            services.AddSingleton(NLog.LogManager.GetCurrentClassLogger());
+            services.AddSingleton(deliveries);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

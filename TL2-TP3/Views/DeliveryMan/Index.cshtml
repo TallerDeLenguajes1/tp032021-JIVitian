@@ -4,3 +4,26 @@
 @{
     ViewData["Title"] = "Our Delivery Mans";
 }
+@model List<TL2_TP3.Models.DeliveryMan>
+
+<table class="table table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <td>LastName</td>
+            <td>Name</td>
+            <td>Address</td>
+            <td>Ordeers</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var dealer in Model)
+        {
+            <tr>
+                <td>@dealer.Name</td>
+                <td>@dealer.Address</td>
+                <td>@dealer.Phone</td>
+                <td>@dealer.Orders.Count</td>
+            </tr>
+        }
+    </tbody>
+</table>

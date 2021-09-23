@@ -12,6 +12,10 @@ namespace TL2_TP3.Models
         public string Address { get; set; }
         public string Phone { get; set; }
         public List<Order> Orders { get; }
+        
+        public DeliveryMan() {
+            Orders = new List<Order>();
+        }
 
         public DeliveryMan(string Name, string Address, string Phone)
         {

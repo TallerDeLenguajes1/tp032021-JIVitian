@@ -6,26 +6,30 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TL2_TP3.Models;
 
 namespace TL2_TP3.Controllers
 {
     public class DeliveryManController : Controller
     {
 
-        private readonly ILogger<DeliveryManController> _logger;
+        //private readonly ILogger<DeliveryManController> _logger;
         private readonly Logger nlog;
+        private readonly List<DeliveryMan> deliveries;
 
-        public DeliveryManController(ILogger<DeliveryManController> logger, Logger nlog)
+        //ILogger<DeliveryManController> logger
+        public DeliveryManController(Logger nlog, List<DeliveryMan> deliveries)
         {
-            _logger = logger;
+            //_logger = logger;
             this.nlog = nlog;
+            this.deliveries = deliveries;
         }
 
         // GET: DeliveryManController
         public ActionResult Index()
         {
             nlog.Info("DeliveryMan Index.");
-            return View();
+            return View(deliveries);
         }
 
         // GET: DeliveryManController/Details/5
@@ -47,7 +51,18 @@ namespace TL2_TP3.Controllers
         {
             try
             {
+                DeliveryMan dealer = new DeliveryMan
+                {
+                    Id = deliveries.Count > 0 ? deliveries.Last().Id + 1 : 1,
+                    Name = collection["Name"],
+                    Address = collection["Address"],
+                    Phone = collection["Phone"]
+                };
+
+                deliveries.Add(dealer);
+
                 nlog.Info("New Delivery Man Created.");
+
                 return RedirectToAction(nameof(Index));
             }
             catch

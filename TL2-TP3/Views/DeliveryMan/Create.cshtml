@@ -4,8 +4,9 @@
 @{
     ViewData["Title"] = "Create DeliveryMan";
 }
+<h1>Add a New Delivery Man</h1>
 
-<form asp-area="" asp-controller="DeliveryMan" asp-action="Create" class="container w-50">
+<form class="container w-50" asp-controller="DeliveryMan" asp-action="Create">
     <input type="text" class="form-control my-3" name="Name" placeholder="Name" />
     <input type="text" class="form-control my-3" name="Address" placeholder="Address" />
     <input type="text" class="form-control my-3" name="Phone" placeholder="Phone" />
