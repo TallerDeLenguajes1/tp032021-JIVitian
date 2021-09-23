@@ -16,13 +16,5 @@ namespace TL2_TP3.Models
         public DeliveryMan() {
             Orders = new List<Order>();
         }
-
-        public DeliveryMan(string Name, string Address, string Phone)
-        {
-            this.Name = Name;
-            this.Address = Address;
-            this.Phone = Phone;
-            Orders = new List<Order>();
-        }
     }
 }
