@@ -10,15 +10,15 @@ using TL2_TP3.Models;
 
 namespace TL2_TP3.Controllers
 {
-    public class DeliveryManController : Controller
+    public class DeliveryBoyController : Controller
     {
 
         //private readonly ILogger<DeliveryManController> _logger;
         private readonly Logger nlog;
-        private readonly List<DeliveryMan> deliveries;
+        private readonly List<DeliveryBoy> deliveries;
 
         //ILogger<DeliveryManController> logger
-        public DeliveryManController(Logger nlog, List<DeliveryMan> deliveries)
+        public DeliveryBoyController(Logger nlog, List<DeliveryBoy> deliveries)
         {
             //_logger = logger;
             this.nlog = nlog;
@@ -51,7 +51,7 @@ namespace TL2_TP3.Controllers
         {
             try
             {
-                DeliveryMan dealer = new DeliveryMan
+                DeliveryBoy dealer = new DeliveryBoy
                 {
                     Id = deliveries.Count > 0 ? deliveries.Last().Id + 1 : 1,
                     Name = collection["Name"],

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace TL2_TP3.Models
 {
-    public class DeliveryMan
+    public class DeliveryBoy
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -13,7 +13,7 @@ namespace TL2_TP3.Models
         public string Phone { get; set; }
         public List<Order> Orders { get; }
         
-        public DeliveryMan() {
+        public DeliveryBoy() {
             Orders = new List<Order>();
         }
     }

@@ -14,7 +14,7 @@ namespace TL2_TP3
 {
     public class Startup
     {
-        static List<DeliveryMan> deliveries = new List<DeliveryMan>();
+        static List<DeliveryBoy> deliveries = new List<DeliveryBoy>();
 
         public Startup(IConfiguration configuration)
         {
