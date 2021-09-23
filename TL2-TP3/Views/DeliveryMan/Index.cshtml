@@ -12,17 +12,19 @@
             <td>LastName</td>
             <td>Name</td>
             <td>Address</td>
+            <td>Phone</td>
             <td>Ordeers</td>
         </tr>
     </thead>
     <tbody>
-        @foreach (var dealer in Model)
+        @foreach (var item in Model)
         {
             <tr>
-                <td>@dealer.Name</td>
-                <td>@dealer.Address</td>
-                <td>@dealer.Phone</td>
-                <td>@dealer.Orders.Count</td>
+                <td><b>@item.Id</b></td>
+                <td>@item.Name</td>
+                <td>@item.Address</td>
+                <td>@item.Phone</td>
+                <td>@item.Orders.Count</td>
             </tr>
         }
     </tbody>
