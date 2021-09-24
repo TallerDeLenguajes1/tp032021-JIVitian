@@ -103,7 +103,9 @@ namespace TL2_TP3.Controllers
         // GET: DeliveryManController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            deliveries.RemoveAll(x => x.Id == id);
+            //return View();
+            return RedirectToAction(nameof(Index));
         }
 
         // POST: DeliveryManController/Delete/5
