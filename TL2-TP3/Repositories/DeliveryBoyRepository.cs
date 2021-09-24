@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace TL2_TP3.Repositories
 {
-    public class DeliveryManRepository
+    public class DeliveryBoyRepository
     {
     }
 }

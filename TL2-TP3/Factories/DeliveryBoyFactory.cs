@@ -8,7 +8,7 @@ namespace TL2_TP3.Factories
     /// <summary>
     /// Crea Deliveries
     /// </summary>
-    public class DeliveryManFactory
+    public class DeliveryBoyFactory
     {
 
     }

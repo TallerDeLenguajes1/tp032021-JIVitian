@@ -75,7 +75,7 @@ namespace TL2_TP3.Controllers
         // GET: DeliveryManController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            return View(deliveries.Where(x => x.Id == id).First());
         }
 
         // POST: DeliveryManController/Edit/5
