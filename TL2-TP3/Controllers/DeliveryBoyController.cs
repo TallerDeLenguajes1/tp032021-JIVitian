@@ -75,7 +75,7 @@ namespace TL2_TP3.Controllers
         // GET: DeliveryManController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View(deliveries.Where(x => x.Id == id).First());
+            return View(deliveries.Find(x => x.Id == id));
         }
 
         // POST: DeliveryManController/Edit/5
@@ -85,6 +85,11 @@ namespace TL2_TP3.Controllers
         {
             try
             {
+                var delivery = deliveries.Find(x => x.Id == id);
+                delivery.Name = collection["Name"];
+                delivery.Address = collection["Address"];
+                delivery.Phone = collection["Phone"];
+
                 nlog.Info("Delivery Man Updated.");
                 return RedirectToAction(nameof(Index));
             }
