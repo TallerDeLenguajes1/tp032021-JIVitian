@@ -103,9 +103,17 @@ namespace TL2_TP3.Controllers
         // GET: DeliveryManController/Delete/5
         public ActionResult Delete(int id)
         {
-            deliveries.RemoveAll(x => x.Id == id);
-            //return View();
-            return RedirectToAction(nameof(Index));
+            try
+            {
+                deliveries.RemoveAll(x => x.Id == id);
+                nlog.Info("Delivery Man Deleted.");
+                //return View();
+                return RedirectToAction(nameof(Index));
+            } catch
+            {
+                nlog.Error("Delviery Man could not be Deleted.");
+                return View("Error");
+            }
         }
 
         // POST: DeliveryManController/Delete/5
