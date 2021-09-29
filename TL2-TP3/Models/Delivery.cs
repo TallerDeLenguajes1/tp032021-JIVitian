@@ -7,8 +7,8 @@ namespace TL2_TP3.Models
 {
     public class Delivery
     {
-        string Name { get; set; }
-        List<DeliveryBoy> DeliveryBoyList { get; }
+        public string Name { get; set; }
+        public List<DeliveryBoy> DeliveryBoyList { get; }
 
         public Delivery ()
         {

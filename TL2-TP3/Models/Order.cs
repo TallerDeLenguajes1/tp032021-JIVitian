@@ -15,9 +15,14 @@ namespace TL2_TP3.Models
 
     public class Order
     {
-        int Number { get; set; }
-        string Observation { get; set; }
-        State State { get; set; }
-        Client Client { get; set; }
+        public int Number { get; set; }
+        public string Observation { get; set; }
+        public State State { get; set; }
+        public Client Client { get; set; }
+
+        public Order()
+        {
+            this.Client = new Client();
+        }
     }
 }

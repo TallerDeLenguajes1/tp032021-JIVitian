@@ -13,11 +13,11 @@ namespace TL2_TP3.Controllers
     public class DeliveryBoyController : Controller
     {
 
-        //private readonly ILogger<DeliveryManController> _logger;
+        //private readonly ILogger<DeliveryBoyController> _logger;
         private readonly Logger nlog;
         private readonly List<DeliveryBoy> deliveries;
 
-        //ILogger<DeliveryManController> logger
+        //ILogger<DeliveryBoyController> logger
         public DeliveryBoyController(Logger nlog, List<DeliveryBoy> deliveries)
         {
             //_logger = logger;
@@ -25,26 +25,26 @@ namespace TL2_TP3.Controllers
             this.deliveries = deliveries;
         }
 
-        // GET: DeliveryManController
+        // GET: DeliveryBoyController
         public ActionResult Index()
         {
-            nlog.Info("DeliveryMan Index.");
+            nlog.Info("Delivery Boy Index.");
             return View(deliveries);
         }
 
-        // GET: DeliveryManController/Details/5
+        // GET: DeliveryBoyController/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: DeliveryManController/Create
+        // GET: DeliveryBoyController/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: DeliveryManController/Create
+        // POST: DeliveryBoyController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
@@ -61,24 +61,24 @@ namespace TL2_TP3.Controllers
 
                 deliveries.Add(dealer);
 
-                nlog.Info("New Delivery Man Created.");
+                nlog.Info("New Delivery Boy Created.");
 
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                nlog.Error("Delviery Man could not be created.");
+                nlog.Error("Delviery Boy could not be created.");
                 return View();
             }
         }
 
-        // GET: DeliveryManController/Edit/5
+        // GET: DeliveryBoyController/Edit/5
         public ActionResult Edit(int id)
         {
             return View(deliveries.Find(x => x.Id == id));
         }
 
-        // POST: DeliveryManController/Edit/5
+        // POST: DeliveryBoyController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -90,45 +90,45 @@ namespace TL2_TP3.Controllers
                 delivery.Address = collection["Address"];
                 delivery.Phone = collection["Phone"];
 
-                nlog.Info("Delivery Man Updated.");
+                nlog.Info("Delivery Boy Updated.");
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                nlog.Error("Delviery Man could not be Updated.");
+                nlog.Error("Delviery Boy could not be Updated.");
                 return View();
             }
         }
 
-        // GET: DeliveryManController/Delete/5
+        // GET: DeliveryBoyController/Delete/5
         public ActionResult Delete(int id)
         {
             try
             {
                 deliveries.RemoveAll(x => x.Id == id);
-                nlog.Info("Delivery Man Deleted.");
+                nlog.Info("Delivery Boy Deleted.");
                 //return View();
                 return RedirectToAction(nameof(Index));
             } catch
             {
-                nlog.Error("Delviery Man could not be Deleted.");
+                nlog.Error("Delviery Boy could not be Deleted.");
                 return View("Error");
             }
         }
 
-        // POST: DeliveryManController/Delete/5
+        // POST: DeliveryBoyController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
         {
             try
             {
-                nlog.Info("Delivery Man Deleted.");
+                nlog.Info("Delivery Boy Deleted.");
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                nlog.Error("Delviery Man could not be Deleted.");
+                nlog.Error("Delviery Boy could'nt be Deleted.");
                 return View();
             }
         }

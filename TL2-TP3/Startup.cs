@@ -15,6 +15,7 @@ namespace TL2_TP3
     public class Startup
     {
         static List<DeliveryBoy> deliveries = new List<DeliveryBoy>();
+        static List<Order> orders = new List<Order>();
 
         public Startup(IConfiguration configuration)
         {
@@ -29,6 +30,7 @@ namespace TL2_TP3
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddSingleton(NLog.LogManager.GetCurrentClassLogger());
             services.AddSingleton(deliveries);
+            services.AddSingleton(orders);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
