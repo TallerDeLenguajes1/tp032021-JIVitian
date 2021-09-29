@@ -1,0 +1,14 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Create Order";
+}
+<h1 class="text-center">Add a New Order</h1>
+
+<form class="container w-50 mt-5" asp-action="Create">
+    <input type="text" class="form-control my-3" name="Observation" placeholder="Observation" />
+    @*<input type="text" class="form-control my-3" name="Address" placeholder="Address" />*@
+    @*<input type="text" class="form-control my-3" name="Phone" placeholder="Phone" />*@
+    <input type="submit" class="btn btn-primary my-3 w-100" value="Send" />
+</form>

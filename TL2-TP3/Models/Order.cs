@@ -22,7 +22,7 @@ namespace TL2_TP3.Models
 
         public Order()
         {
-            this.Client = new Client();
+            //this.Client = new Client();
         }
     }
 }

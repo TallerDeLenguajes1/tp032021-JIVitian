@@ -47,10 +47,14 @@ namespace TL2_TP3.Controllers
             try
             {
                 var order = new Order {
-                    Number = int.Parse(collection["Number"]),
+                    //Number = int.Parse(collection["Number"]),
+                    Number = 1,
                     Observation = collection["Observation"],
-                    State = 0 // Initialize in ToConfirm
+                    State = 0, // Initialize in ToConfirm
+                    Client = new Client { Name = "Juan Perez", Address = "Mikasa", Id = 1, Phone = "1234" }
                 };
+
+                orders.Add(order);
 
                 nlog.Info($"Order N°{order.Number} Created.");
                 return RedirectToAction(nameof(Index));
