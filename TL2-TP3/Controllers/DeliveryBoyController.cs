@@ -49,16 +49,6 @@ namespace TL2_TP3.Controllers
         {
             try
             {
-                //DeliveryBoy dealer = new DeliveryBoy
-                //{
-                //    Id = delivery.Delivery.DeliveryBoyList.Count > 0 ? delivery.Delivery.DeliveryBoyList.Last().Id + 1 : 1,
-                //    Name = collection["Name"],
-                //    Address = collection["Address"],
-                //    Phone = collection["Phone"]
-                //};
-
-                //delivery.Delivery.DeliveryBoyList.Add(dealer);
-
                 delivery.AddDeliveryBoy(collection);
 
                 nlog.Info("New Delivery Boy Created.");
@@ -85,11 +75,7 @@ namespace TL2_TP3.Controllers
         {
             try
             {
-                var delivery = this.delivery.Delivery.DeliveryBoyList.Find(x => x.Id == id);
-                delivery.Name = collection["Name"];
-                delivery.Address = collection["Address"];
-                delivery.Phone = collection["Phone"];
-
+                delivery.EditDeliveryBoy(id, collection);
                 nlog.Info("Delivery Boy Updated.");
                 return RedirectToAction(nameof(Index));
             }

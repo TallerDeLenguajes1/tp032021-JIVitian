@@ -42,7 +42,7 @@ namespace TL2_TP3.Repositories
             //    return deliveries;
         //}
 
-        public List<DeliveryBoy> ReadJSON()
+        private List<DeliveryBoy> ReadJSON()
         {
             if (File.Exists(path))
             {
@@ -89,5 +89,17 @@ namespace TL2_TP3.Repositories
 
             SaveJSON();
         }
+
+        public void EditDeliveryBoy(int id, IFormCollection collection)
+        {
+            var delivery = Delivery.DeliveryBoyList.Find(x => x.Id == id);
+            delivery.Name = collection["Name"];
+            delivery.Address = collection["Address"];
+            delivery.Phone = collection["Phone"];
+
+            SaveJSON();
+        }
+
+        
     }
 }
