@@ -47,8 +47,7 @@ namespace TL2_TP3.Controllers
             try
             {
                 var order = new Order {
-                    //Number = int.Parse(collection["Number"]),
-                    Number = 1,
+                    Number = orders.Count > 0 ? orders.Last().Number + 1 : 1,
                     Observation = collection["Observation"],
                     State = 0, // Initialize in ToConfirm
                     Client = new Client { Name = "Juan Perez", Address = "Mikasa", Id = 1, Phone = "1234" }
@@ -92,7 +91,18 @@ namespace TL2_TP3.Controllers
         // GET: OrderController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            try
+            {
+                orders.RemoveAll(order => order.Number == id);
+                nlog.Info($"Order N°{id} Deleted.");
+                //return View();
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                nlog.Error("Order could not be Deleted.");
+                return View("Error");
+            }
         }
 
         // POST: OrderController/Delete/5

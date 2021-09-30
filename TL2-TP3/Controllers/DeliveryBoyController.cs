@@ -106,7 +106,7 @@ namespace TL2_TP3.Controllers
             try
             {
                 deliveries.RemoveAll(x => x.Id == id);
-                nlog.Info("Delivery Boy Deleted.");
+                nlog.Info($"Delivery Boy {id} Deleted.");
                 //return View();
                 return RedirectToAction(nameof(Index));
             } catch

@@ -1,32 +1,32 @@
-﻿@model TL2_TP3.Models.DeliveryBoy
+﻿@model TL2_TP3.Models.Order
 
 @{
     ViewData["Title"] = "Edit";
 }
-<h1>Edit a Delivery Boy</h1>
+<h1>Edit a Order</h1>
 <hr />
 <div class="container">
     <form class="w-50 m-auto" asp-action="Edit">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">
-            <label asp-for="Id" class="control-label"></label>
-            <input asp-for="Id" class="form-control" />
-            <span asp-validation-for="Id" class="text-danger"></span>
+            <label asp-for="Number" class="control-label"></label>
+            <input asp-for="Number" class="form-control" />
+            <span asp-validation-for="Number" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label asp-for="Name" class="control-label"></label>
-            <input asp-for="Name" class="form-control" />
-            <span asp-validation-for="Name" class="text-danger"></span>
+            <label asp-for="Observation" class="control-label"></label>
+            <input asp-for="Observation" class="form-control" />
+            <span asp-validation-for="Observation" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label asp-for="Address" class="control-label"></label>
-            <input asp-for="Address" class="form-control" />
-            <span asp-validation-for="Address" class="text-danger"></span>
+            <label asp-for="State" class="control-label"></label>
+            <input asp-for="State" class="form-control" />
+            <span asp-validation-for="State" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label asp-for="Phone" class="control-label"></label>
-            <input asp-for="Phone" class="form-control" />
-            <span asp-validation-for="Phone" class="text-danger"></span>
+            <label asp-for="Client.Name" class="control-label"></label>
+            <input asp-for="Client.Name" class="form-control" />
+            <span asp-validation-for="Client.Name" class="text-danger"></span>
         </div>
         <div class="form-group">
             <input type="submit" value="Save" class="btn btn-primary w-100 my-3" />

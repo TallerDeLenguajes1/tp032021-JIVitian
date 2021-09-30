@@ -8,11 +8,11 @@ namespace TL2_TP3.Models
     public class Delivery
     {
         public string Name { get; set; }
-        public List<DeliveryBoy> DeliveryBoyList { get; }
+        public List<DeliveryBoy> DeliveryBoyList { get; set; }
 
-        public Delivery ()
-        {
-            DeliveryBoyList = new List<DeliveryBoy>();
-        }
+        //public Delivery ()
+        //{
+        //    DeliveryBoyList = new List<DeliveryBoy>();
+        //}
     }
 }
