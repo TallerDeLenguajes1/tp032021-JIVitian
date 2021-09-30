@@ -14,14 +14,11 @@ namespace TL2_TP3.Controllers
     public class DeliveryBoyController : Controller
     {
 
-        //private readonly ILogger<DeliveryBoyController> _logger;
         private readonly Logger nlog;
         private readonly DeliveryRepository delivery;
 
-        //ILogger<DeliveryBoyController> logger
         public DeliveryBoyController(Logger nlog, DeliveryRepository delivery)
         {
-            //_logger = logger;
             this.nlog = nlog;
             this.delivery = delivery;
         }
@@ -52,15 +49,17 @@ namespace TL2_TP3.Controllers
         {
             try
             {
-                DeliveryBoy dealer = new DeliveryBoy
-                {
-                    Id = delivery.Delivery.DeliveryBoyList.Count > 0 ? delivery.Delivery.DeliveryBoyList.Last().Id + 1 : 1,
-                    Name = collection["Name"],
-                    Address = collection["Address"],
-                    Phone = collection["Phone"]
-                };
+                //DeliveryBoy dealer = new DeliveryBoy
+                //{
+                //    Id = delivery.Delivery.DeliveryBoyList.Count > 0 ? delivery.Delivery.DeliveryBoyList.Last().Id + 1 : 1,
+                //    Name = collection["Name"],
+                //    Address = collection["Address"],
+                //    Phone = collection["Phone"]
+                //};
 
-                delivery.Delivery.DeliveryBoyList.Add(dealer);
+                //delivery.Delivery.DeliveryBoyList.Add(dealer);
+
+                delivery.AddDeliveryBoy(collection);
 
                 nlog.Info("New Delivery Boy Created.");
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -10,6 +11,8 @@ namespace TL2_TP3.Repositories
 {
     public class DeliveryRepository
     {
+        string path = "DeliveryBoys.JSON";
+
         public Delivery Delivery { get; }
 
         public DeliveryRepository()
@@ -41,8 +44,6 @@ namespace TL2_TP3.Repositories
 
         public List<DeliveryBoy> ReadJSON()
         {
-            string path = "DeliveryBoys.JSON";
-
             if (File.Exists(path))
             {
                 using (FileStream archivo = new FileStream(path, FileMode.Open))
@@ -59,6 +60,34 @@ namespace TL2_TP3.Repositories
                 var archivo = new FileStream(path, FileMode.Create);
                 return new List<DeliveryBoy>();
             }
+        }
+
+        private void SaveJSON()
+        {
+            string DatosJson = JsonSerializer.Serialize(Delivery.DeliveryBoyList);
+
+            using (FileStream archivo = new FileStream(path, FileMode.OpenOrCreate))
+            {
+                StreamWriter strWrite = new StreamWriter(archivo);
+                strWrite.WriteLine(DatosJson);
+                strWrite.Close();
+                strWrite.Dispose();
+            }
+        }
+
+        public void AddDeliveryBoy(IFormCollection collection)
+        {
+            DeliveryBoy dealer = new DeliveryBoy
+            {
+                Id = Delivery.DeliveryBoyList.Count > 0 ? Delivery.DeliveryBoyList.Last().Id + 1 : 1,
+                Name = collection["Name"],
+                Address = collection["Address"],
+                Phone = collection["Phone"]
+            };
+
+            Delivery.DeliveryBoyList.Add(dealer);
+
+            SaveJSON();
         }
     }
 }
