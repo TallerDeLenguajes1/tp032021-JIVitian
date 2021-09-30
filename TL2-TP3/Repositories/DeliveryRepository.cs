@@ -45,7 +45,7 @@ namespace TL2_TP3.Repositories
 
             if (File.Exists(path))
             {
-                using (FileStream archivo = new FileStream(path, FileMode.OpenOrCreate))
+                using (FileStream archivo = new FileStream(path, FileMode.Open))
                 {
                     StreamReader strReader = new StreamReader(archivo);
                     string json = strReader.ReadToEnd();
