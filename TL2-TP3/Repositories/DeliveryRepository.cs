@@ -8,13 +8,13 @@ using TL2_TP3.Models;
 
 namespace TL2_TP3.Repositories
 {
-    public class DeliveryBoyRepository
+    public class DeliveryRepository
     {
-        private string path;
         public Delivery Delivery { get; }
 
-        public DeliveryBoyRepository()
+        public DeliveryRepository()
         {
+            Delivery = new Delivery();
             Delivery.DeliveryBoyList = ReadJSON();
         }
 
@@ -41,15 +41,17 @@ namespace TL2_TP3.Repositories
 
         public List<DeliveryBoy> ReadJSON()
         {
+            string path = "DeliveryBoys.JSON";
+
             if (File.Exists(path))
             {
-                using (FileStream archivo = new FileStream(path, FileMode.Open))
+                using (FileStream archivo = new FileStream(path, FileMode.OpenOrCreate))
                 {
                     StreamReader strReader = new StreamReader(archivo);
                     string json = strReader.ReadToEnd();
                     strReader.Close();
                     strReader.Dispose();
-                    return JsonSerializer.Deserialize<List<DeliveryBoy>>(json);
+                    return json != "" ? JsonSerializer.Deserialize<List<DeliveryBoy>>(json) : new List<DeliveryBoy>();
                 }
             }
             else

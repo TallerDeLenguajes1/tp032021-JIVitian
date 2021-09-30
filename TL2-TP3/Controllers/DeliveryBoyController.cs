@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TL2_TP3.Models;
+using TL2_TP3.Repositories;
 
 namespace TL2_TP3.Controllers
 {
@@ -15,21 +16,21 @@ namespace TL2_TP3.Controllers
 
         //private readonly ILogger<DeliveryBoyController> _logger;
         private readonly Logger nlog;
-        private readonly List<DeliveryBoy> deliveries;
+        private readonly DeliveryRepository delivery;
 
         //ILogger<DeliveryBoyController> logger
-        public DeliveryBoyController(Logger nlog, List<DeliveryBoy> deliveries)
+        public DeliveryBoyController(Logger nlog, DeliveryRepository delivery)
         {
             //_logger = logger;
             this.nlog = nlog;
-            this.deliveries = deliveries;
+            this.delivery = delivery;
         }
 
         // GET: DeliveryBoyController
         public ActionResult Index()
         {
             nlog.Info("Delivery Boy Index.");
-            return View(deliveries);
+            return View(delivery.Delivery.DeliveryBoyList);
         }
 
         // GET: DeliveryBoyController/Details/5
@@ -53,13 +54,13 @@ namespace TL2_TP3.Controllers
             {
                 DeliveryBoy dealer = new DeliveryBoy
                 {
-                    Id = deliveries.Count > 0 ? deliveries.Last().Id + 1 : 1,
+                    Id = delivery.Delivery.DeliveryBoyList.Count > 0 ? delivery.Delivery.DeliveryBoyList.Last().Id + 1 : 1,
                     Name = collection["Name"],
                     Address = collection["Address"],
                     Phone = collection["Phone"]
                 };
 
-                deliveries.Add(dealer);
+                delivery.Delivery.DeliveryBoyList.Add(dealer);
 
                 nlog.Info("New Delivery Boy Created.");
 
@@ -75,7 +76,7 @@ namespace TL2_TP3.Controllers
         // GET: DeliveryBoyController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View(deliveries.Find(x => x.Id == id));
+            return View(delivery.Delivery.DeliveryBoyList.Find(x => x.Id == id));
         }
 
         // POST: DeliveryBoyController/Edit/5
@@ -85,7 +86,7 @@ namespace TL2_TP3.Controllers
         {
             try
             {
-                var delivery = deliveries.Find(x => x.Id == id);
+                var delivery = this.delivery.Delivery.DeliveryBoyList.Find(x => x.Id == id);
                 delivery.Name = collection["Name"];
                 delivery.Address = collection["Address"];
                 delivery.Phone = collection["Phone"];
@@ -105,7 +106,7 @@ namespace TL2_TP3.Controllers
         {
             try
             {
-                deliveries.RemoveAll(x => x.Id == id);
+                delivery.Delivery.DeliveryBoyList.RemoveAll(x => x.Id == id);
                 nlog.Info($"Delivery Boy {id} Deleted.");
                 //return View();
                 return RedirectToAction(nameof(Index));

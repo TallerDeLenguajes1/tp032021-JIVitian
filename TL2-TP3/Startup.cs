@@ -9,12 +9,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TL2_TP3.Models;
+using TL2_TP3.Repositories;
 
 namespace TL2_TP3
 {
     public class Startup
     {
-        static List<DeliveryBoy> deliveries = new List<DeliveryBoy>();
+        static DeliveryRepository delivery = new DeliveryRepository();
         static List<Order> orders = new List<Order>();
 
         public Startup(IConfiguration configuration)
@@ -29,7 +30,7 @@ namespace TL2_TP3
         {
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddSingleton(NLog.LogManager.GetCurrentClassLogger());
-            services.AddSingleton(deliveries);
+            services.AddSingleton(delivery);
             services.AddSingleton(orders);
         }
 
