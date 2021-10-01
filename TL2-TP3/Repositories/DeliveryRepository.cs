@@ -18,31 +18,10 @@ namespace TL2_TP3.Repositories
         public DeliveryRepository()
         {
             Delivery = new Delivery();
-            Delivery.DeliveryBoyList = ReadJSON();
+            Delivery.DeliveryBoyList = ReadDeliveryBoyJSON();
         }
 
-        //public List<DeliveryBoy> ReadJSON()
-        //{
-            //List<DeliveryBoy> deliveries;
-
-            //try
-            //{
-            //    string DatosJson = JsonSerializer.Serialize(deliveries);
-
-            //    using (FileStream archivo = new FileStream("Ranking.JSON", FileMode.OpenOrCreate))
-            //    {
-            //        StreamWriter strWrite = new StreamWriter(archivo);
-            //        strWrite.WriteLine(DatosJson);
-            //        strWrite.Close();
-            //        strWrite.Dispose();
-            //    }
-            //} catch
-            //{
-            //}
-            //    return deliveries;
-        //}
-
-        private List<DeliveryBoy> ReadJSON()
+        private List<DeliveryBoy> ReadDeliveryBoyJSON()
         {
             if (File.Exists(path))
             {
@@ -62,13 +41,11 @@ namespace TL2_TP3.Repositories
             }
         }
 
-        private void SaveJSON()
+        private void SaveDeliveryJSON()
         {
             string DatosJson = JsonSerializer.Serialize(Delivery.DeliveryBoyList);
 
-            using (FileStream archivo = new FileStream(path, FileMode.Truncate)) { };
-
-            using (FileStream archivo = new FileStream(path, FileMode.OpenOrCreate))
+            using (FileStream archivo = new FileStream(path, FileMode.Create))
             {
                 StreamWriter strWrite = new StreamWriter(archivo);
                 strWrite.WriteLine(DatosJson);
@@ -89,7 +66,7 @@ namespace TL2_TP3.Repositories
 
             Delivery.DeliveryBoyList.Add(dealer);
 
-            SaveJSON();
+            SaveDeliveryJSON();
         }
 
         public void EditDeliveryBoy(int id, IFormCollection collection)
@@ -99,14 +76,21 @@ namespace TL2_TP3.Repositories
             delivery.Address = collection["Address"];
             delivery.Phone = collection["Phone"];
 
-            SaveJSON();
+            SaveDeliveryJSON();
         }
 
         public void DeleteDeliveryBoy(int id)
         {
             Delivery.DeliveryBoyList.RemoveAll(x => x.Id == id);
 
-            SaveJSON();
+            SaveDeliveryJSON();
+        }
+
+        public void AddOrder(int id, Order order)
+        {
+            Delivery.DeliveryBoyList.Find(x => x.Id == id).Orders.Add(order);
+
+            SaveDeliveryJSON();
         }
     }
 }

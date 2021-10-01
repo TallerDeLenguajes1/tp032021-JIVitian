@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TL2_TP3.Models;
+using TL2_TP3.Repositories;
 
 namespace TL2_TP3.Controllers
 {
@@ -13,11 +14,13 @@ namespace TL2_TP3.Controllers
     {
         private readonly Logger nlog;
         private readonly List<Order> orders;
+        private readonly DeliveryRepository delivery;
 
-        public OrderController(Logger nlog, List<Order> orders)
+        public OrderController(Logger nlog, List<Order> orders, DeliveryRepository delivery)
         {
             this.nlog = nlog;
             this.orders = orders;
+            this.delivery = delivery;
         }
 
         // GET: OrderController
@@ -36,7 +39,7 @@ namespace TL2_TP3.Controllers
         // GET: OrderController/Create
         public ActionResult Create()
         {
-            return View();
+            return View(delivery.Delivery.DeliveryBoyList);
         }
 
         // POST: OrderController/Create
@@ -54,6 +57,8 @@ namespace TL2_TP3.Controllers
                 };
 
                 orders.Add(order);
+
+                delivery.AddOrder(int.Parse(collection["DeliveryBoy"]), order);
 
                 nlog.Info($"Order N°{order.Number} Created.");
                 return RedirectToAction(nameof(Index));

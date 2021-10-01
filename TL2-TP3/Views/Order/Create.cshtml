@@ -4,10 +4,18 @@
 @{
     ViewData["Title"] = "Create Order";
 }
+@model List<TL2_TP3.Models.DeliveryBoy>
+
 <h1 class="text-center">Add a New Order</h1>
 
 <form class="container w-50 mt-5" asp-action="Create">
     <input type="text" class="form-control my-3" name="Observation" placeholder="Observation" />
+    <select class="custom-select" name="DeliveryBoy" placeholder="DeliveryBoy">
+        @foreach (var item in Model)
+        {
+            <option value="@item.Id">@item.Name</option>
+        }
+    </select>
     @*<input type="text" class="form-control my-3" name="Address" placeholder="Address" />*@
     @*<input type="text" class="form-control my-3" name="Phone" placeholder="Phone" />*@
     <input type="submit" class="btn btn-primary my-3 w-100" value="Send" />
