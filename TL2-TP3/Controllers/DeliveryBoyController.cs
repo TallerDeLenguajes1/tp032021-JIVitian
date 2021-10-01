@@ -91,7 +91,7 @@ namespace TL2_TP3.Controllers
         {
             try
             {
-                delivery.Delivery.DeliveryBoyList.RemoveAll(x => x.Id == id);
+                delivery.DeleteDeliveryBoy(id);
                 nlog.Info($"Delivery Boy {id} Deleted.");
                 //return View();
                 return RedirectToAction(nameof(Index));

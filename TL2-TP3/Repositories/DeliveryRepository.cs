@@ -66,6 +66,8 @@ namespace TL2_TP3.Repositories
         {
             string DatosJson = JsonSerializer.Serialize(Delivery.DeliveryBoyList);
 
+            using (FileStream archivo = new FileStream(path, FileMode.Truncate)) { };
+
             using (FileStream archivo = new FileStream(path, FileMode.OpenOrCreate))
             {
                 StreamWriter strWrite = new StreamWriter(archivo);
@@ -100,6 +102,11 @@ namespace TL2_TP3.Repositories
             SaveJSON();
         }
 
-        
+        public void DeleteDeliveryBoy(int id)
+        {
+            Delivery.DeliveryBoyList.RemoveAll(x => x.Id == id);
+
+            SaveJSON();
+        }
     }
 }
