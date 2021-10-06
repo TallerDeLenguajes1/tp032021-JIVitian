@@ -2,4 +2,45 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-}
+    ViewData["Title"] = "Clientes";
+} 
+@model List<TL2_TP3.Models.Client>
+
+<div class="ml-auto d-flex justify-content-between">
+    <h1 class="ms-1">Delivery Boys List</h1>
+    <a class="me-1" asp-action="Create"><i class="bi bi-plus-square-fill display-6"></i></a>
+    @*<a class="ml-auto" title  ="Create a new Delivery Boy" asp-action="Create"><i class="bi bi-person-plus-fill display-6"></i></a>*@
+</div>
+
+<table class="table table-striped">
+    <thead class="table-dark">
+        <tr>
+            <td>ID</td>
+            <td>Name</td>
+            <td>Address</td>
+            <td>Phone</td>
+            <td>Actions</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <b>@item.Id</b>
+                </td>
+                <td>@item.Name</td>
+                <td>@item.Address</td>
+                <td>@item.Phone</td>
+                <td class="d-flex justify-content-evenly">
+                    <a class="btn btn-warning" asp-route-id="@item.Id" asp-action="Edit">
+                        <i class="bi bi-pencil-fill"></i>
+                    </a>
+                    <a class="btn btn-danger" asp-route-id="@item.Id" asp-action="Delete" onclick="return confirm('Are you sure you want delete this item?')">
+                        <i class="bi bi-trash"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

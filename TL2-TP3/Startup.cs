@@ -17,6 +17,7 @@ namespace TL2_TP3
     {
         static DeliveryRepository delivery = new DeliveryRepository();
         static OrderRepository orders = new OrderRepository(delivery);
+        static List<Client> clientes = new List<Client>();
 
         public Startup(IConfiguration configuration)
         {
@@ -32,6 +33,7 @@ namespace TL2_TP3
             services.AddSingleton(NLog.LogManager.GetCurrentClassLogger());
             services.AddSingleton(delivery);
             services.AddSingleton(orders);
+            services.AddSingleton(clientes);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
