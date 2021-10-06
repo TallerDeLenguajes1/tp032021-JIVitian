@@ -10,7 +10,6 @@ namespace TL2_TP3.Repositories
     public abstract class RepositoryJSON <T>
     {
         protected string path;
-
         public List<T> List { get; set; }
 
         protected List<T> ReadJSON()

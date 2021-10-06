@@ -88,9 +88,8 @@ namespace TL2_TP3.Controllers
         {
             try
             {
-                orders.List.RemoveAll(order => order.Number == id);
+                orders.DeleteOrder(id);
                 nlog.Info($"Order N°{id} Deleted.");
-                //return View();
                 return RedirectToAction(nameof(Index));
             }
             catch

@@ -41,5 +41,12 @@ namespace TL2_TP3.Repositories
             order.State = (State)int.Parse(collection["State"]);
             SaveJSON();
         }
+
+        public void DeleteOrder(int id)
+        {
+            List.RemoveAll(x => x.Number == id);
+
+            SaveJSON();
+        }
     }
 }

@@ -903,23 +903,24 @@
           "lib/netstandard2.0/NLog.dll": {}
         }
       },
-      "NLog.Extensions.Logging/1.6.4": {
+      "NLog.Extensions.Logging/1.7.4": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.Logging": "3.0.0",
-          "NLog": "4.7.2"
+          "Microsoft.Extensions.Configuration.Abstractions": "5.0.0",
+          "Microsoft.Extensions.Logging": "5.0.0",
+          "NLog": "4.7.11"
         },
         "compile": {
-          "lib/netcoreapp3.0/NLog.Extensions.Logging.dll": {}
+          "lib/net5.0/NLog.Extensions.Logging.dll": {}
         },
         "runtime": {
-          "lib/netcoreapp3.0/NLog.Extensions.Logging.dll": {}
+          "lib/net5.0/NLog.Extensions.Logging.dll": {}
         }
       },
-      "NLog.Web.AspNetCore/4.9.3": {
+      "NLog.Web.AspNetCore/4.14.0": {
         "type": "package",
         "dependencies": {
-          "NLog.Extensions.Logging": "1.6.4"
+          "NLog.Extensions.Logging": "1.7.4"
         },
         "compile": {
           "lib/netcoreapp3.0/NLog.Web.AspNetCore.dll": {}
@@ -3712,17 +3713,20 @@
         "nlog.nuspec"
       ]
     },
-    "NLog.Extensions.Logging/1.6.4": {
-      "sha512": "ESOBd/bzxFacwpWTdTXaAaItJz/0Mzibyw65YB0uQT4pf2hXtwHp2626qEiVOmaacIQbJH5wGpBLNcVpbQLpKA==",
+    "NLog.Extensions.Logging/1.7.4": {
+      "sha512": "/dMxI/lBPNhKe9uONCQaZ3JYSHJh9/yez4Uqc6yIo2hIGaoi8sbQg7WQqW5/1WAIquhrG/SeCEZUTGMiRSQAHw==",
       "type": "package",
-      "path": "nlog.extensions.logging/1.6.4",
+      "path": "nlog.extensions.logging/1.7.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
+        "N.png",
         "lib/net451/NLog.Extensions.Logging.dll",
         "lib/net451/NLog.Extensions.Logging.xml",
         "lib/net461/NLog.Extensions.Logging.dll",
         "lib/net461/NLog.Extensions.Logging.xml",
+        "lib/net5.0/NLog.Extensions.Logging.dll",
+        "lib/net5.0/NLog.Extensions.Logging.xml",
         "lib/netcoreapp3.0/NLog.Extensions.Logging.dll",
         "lib/netcoreapp3.0/NLog.Extensions.Logging.xml",
         "lib/netstandard1.3/NLog.Extensions.Logging.dll",
@@ -3731,17 +3735,18 @@
         "lib/netstandard1.5/NLog.Extensions.Logging.xml",
         "lib/netstandard2.0/NLog.Extensions.Logging.dll",
         "lib/netstandard2.0/NLog.Extensions.Logging.xml",
-        "nlog.extensions.logging.1.6.4.nupkg.sha512",
+        "nlog.extensions.logging.1.7.4.nupkg.sha512",
         "nlog.extensions.logging.nuspec"
       ]
     },
-    "NLog.Web.AspNetCore/4.9.3": {
-      "sha512": "v3TiGaFXENM3/fVCFJJaien7A44EcGwceySh5rFNkp5RC3PZvsbDjEXoOeqsDz8+i5iuYQDMjTFuD2JReNdj9g==",
+    "NLog.Web.AspNetCore/4.14.0": {
+      "sha512": "5fTviEu/f+mIxucGHmcx1q/mtJGo8EZbxACD57H4iJPZbLaD0LsLxMB2xDCxDO9uexlnfMMDoryq1nFdrl/C6A==",
       "type": "package",
-      "path": "nlog.web.aspnetcore/4.9.3",
+      "path": "nlog.web.aspnetcore/4.14.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
+        "N.png",
         "lib/net451/NLog.Web.AspNetCore.dll",
         "lib/net451/NLog.Web.AspNetCore.xml",
         "lib/net461/NLog.Web.AspNetCore.dll",
@@ -3752,8 +3757,9 @@
         "lib/netstandard1.5/NLog.Web.AspNetCore.xml",
         "lib/netstandard2.0/NLog.Web.AspNetCore.dll",
         "lib/netstandard2.0/NLog.Web.AspNetCore.xml",
-        "nlog.web.aspnetcore.4.9.3.nupkg.sha512",
-        "nlog.web.aspnetcore.nuspec"
+        "nlog.web.aspnetcore.4.14.0.nupkg.sha512",
+        "nlog.web.aspnetcore.nuspec",
+        "readme.txt"
       ]
     },
     "runtime.native.System/4.3.0": {
@@ -7360,7 +7366,7 @@
       "Microsoft.EntityFrameworkCore.Tools >= 5.0.9",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 5.0.2",
       "NLog >= 4.7.*",
-      "NLog.Web.AspNetCore >= 4.9.*"
+      "NLog.Web.AspNetCore >= 4.14.0"
     ]
   },
   "packageFolders": {
@@ -7434,7 +7440,7 @@
           },
           "NLog.Web.AspNetCore": {
             "target": "Package",
-            "version": "[4.9.*, )"
+            "version": "[4.14.0, )"
           }
         },
         "imports": [

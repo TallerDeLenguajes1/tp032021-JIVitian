@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "G5GcCli2iFeGbAo5vyI/7QYnFIC4uQ3hzlYSsz5O5zvnusctyMseRfsNMTMMP4nx/JEgtOzXcitJQpb3zsFR+Q==",
+  "dgSpecHash": "gF0zBTefKugkN2Nuhvo/EsDkjCEBmznDdTPedC9PiW2Q1HLVvyLYtL3Ob7m+UdjtihyHFvf/D8V56H9JLUrEoQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\jivit\\Desktop\\Mis Cosas\\Facultad\\Licenciatura En Informatica\\2do Anio\\Taller de Lenguajes 2\\Practica\\TP3-Vitian\\TL2-TP3\\TL2-TP3\\TL2-TP3.csproj",
   "expectedPackageFiles": [
@@ -58,8 +58,8 @@
     "C:\\Users\\jivit\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\jivit\\.nuget\\packages\\newtonsoft.json\\11.0.2\\newtonsoft.json.11.0.2.nupkg.sha512",
     "C:\\Users\\jivit\\.nuget\\packages\\nlog\\4.7.11\\nlog.4.7.11.nupkg.sha512",
-    "C:\\Users\\jivit\\.nuget\\packages\\nlog.extensions.logging\\1.6.4\\nlog.extensions.logging.1.6.4.nupkg.sha512",
-    "C:\\Users\\jivit\\.nuget\\packages\\nlog.web.aspnetcore\\4.9.3\\nlog.web.aspnetcore.4.9.3.nupkg.sha512",
+    "C:\\Users\\jivit\\.nuget\\packages\\nlog.extensions.logging\\1.7.4\\nlog.extensions.logging.1.7.4.nupkg.sha512",
+    "C:\\Users\\jivit\\.nuget\\packages\\nlog.web.aspnetcore\\4.14.0\\nlog.web.aspnetcore.4.14.0.nupkg.sha512",
     "C:\\Users\\jivit\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
     "C:\\Users\\jivit\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",
     "C:\\Users\\jivit\\.nuget\\packages\\system.collections.concurrent\\4.3.0\\system.collections.concurrent.4.3.0.nupkg.sha512",
