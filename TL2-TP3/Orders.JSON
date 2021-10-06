@@ -1,1 +1,1 @@
-[{"Number":1,"Observation":"Pizza Napolitana","State":1,"Client":{"Id":1,"Name":"Juan Perez","Address":"Mikasa","Phone":"1234"}},{"Number":2,"Observation":"Sandwich de Pollo","State":1,"Client":{"Id":1,"Name":"Juan Perez","Address":"Mikasa","Phone":"1234"}},{"Number":3,"Observation":"Empanadas","State":0,"Client":{"Id":1,"Name":"Juan Perez","Address":"Mikasa","Phone":"1234"}}]
+[{"Number":1,"Observation":"Pizza","State":0,"Client":{"Id":1,"Name":"Juan Perez","Address":"Mikasa","Phone":"1234"}}]
