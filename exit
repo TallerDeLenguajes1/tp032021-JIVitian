@@ -1,0 +1,203 @@
+[33mcommit 4a5063e61ebe3fd3b99ff0a3af42aa508755406a[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: JIVitian <jivitian@gmail.com>
+Date:   Tue Oct 5 22:08:42 2021 -0300
+
+    Probando cosas
+
+[33mcommit f6242c92d638bcf4ab805c678576616b0a865f65[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: JIVitian <jivitian@gmail.com>
+Date:   Fri Oct 1 16:59:15 2021 -0300
+
+    Se puede elegir a que cadete agregar el pedido
+
+[33mcommit feb506991960a7bc236cfe2536c69438cea5b022[m
+Author: JIVitian <jivitian@gmail.com>
+Date:   Fri Oct 1 15:38:46 2021 -0300
+
+    Si borro el contenido del archivo cada vez que guardo, funciona correctamente el borrado de los cadetes.
+
+[33mcommit 2a557449381f9b6e57cd4d83d1231ffeb345b48c[m
+Author: JIVitian <jivitian@gmail.com>
+Date:   Thu Sep 30 18:07:37 2021 -0300
+
+    Añadido método para editar y guardar un cadete
+
+[33mcommit f5b73199530dc7aa5cd55e96f63708fb0fec55b6[m
+Author: JIVitian <jivitian@gmail.com>
+Date:   Thu Sep 30 18:02:29 2021 -0300
+
+    Creada función para escribir en el archivo JSON
+
+[33mcommit 37225cb64a2b1f0fb8376b1607f9bd0b9bb6fac0[m
+Author: JIVitian <jivitian@gmail.com>
+Date:   Thu Sep 30 17:48:26 2021 -0300
+
+    Implementando la clase DeliveryRepository
+
+[33mcommit 43d77c16acfbb7c44f645350f292d42ccd4976cd[m
+Author: JIVitian <jivitian@gmail.com>
+Date:   Thu Sep 30 17:47:39 2021 -0300
+
+    Implementando la clase DeliveryRepository
+
+[33mcommit 22cf43c89890d8a1cf9dba1de6b5bdefe46f5c90[m
+Author: JIVitian <jivitian@gmail.com>
+Date:   Thu Sep 30 16:57:34 2021 -0300
+
+    Agregada la lectura de un JSON que sirve como persistencia para los deliveries
+
+[33mcommit 816124088529f54b8ce7934c89472e0caf8fcc0e[m
+Author: JIVitian <jivitian@gmail.com>
+Date:   Tue Sep 28 21:42:44 2021 -0300
+
+    Probando la inserción de nuevas ordenes
+
+[33mcommit 44ed84cf491e1e30291abcc55072180fdaeb6a6c[m
+Author: JIVitian <jivitian@gmail.com>
+Date:   Tue Sep 28 21:13:32 2021 -0300
+
+    Corregidos errores en las definiciones de algunos modelos y modificada el texto que se guarda en los logs, tambien se añadieron elementos a la vista de Order
+
+[33mcommit b43fc823ff1c5df2c24d314ba1aa85efb7859fa8[m
+Author: JIVitian <jivitian@gmail.com>
+Date:   Fri Sep 24 23:36:48 2021 -0300
+
+    Agregando controlador y vista para Order
+
+[33mcommit d78663fb84539a82577a6a53b2f47b1e18811535[m
+Author: JIVitian <jivitian@gmail.com>
+Date:   Fri Sep 24 18:56:59 2021 -0300
+
+    Añadida Clase Delivery
+
+[33mcommit 0f929453e113809d845a28e59b50a040c3f16753[m
+Author: JIVitian <jivitian@gmail.com>
+Date:   Fri Sep 24 18:44:47 2021 -0300
+
+    Clase Cliente llena, pensando en si es necesario crear una interfaz para Client y DeliveryBoy
+
+[33mcommit 301a39757986b4ab10841a54f31892230e492f75[m
+Author: JIVitian <jivitian@gmail.com>
+Date:   Fri Sep 24 18:36:16 2021 -0300
+
+    Cambios esteticos
+
+[33mcommit 885de06eb755bd5346d583d535888fd2f860e8c5[m
+Author: JIVitian <jivitian@gmail.com>
+Date:   Fri Sep 24 17:46:10 2021 -0300
+
+    Cambiando Bootstrap 4 por la versión 5
+
+[33mcommit 6a0633e9156f6f73e3d8dc2d7dfb3b1a93ea7c6c[m
+Author: JIVitian <jivitian@gmail.com>
+Date:   Fri Sep 24 17:29:47 2021 -0300
+
+    Clase Order llenada y clase Client creada
+
+[33mcommit f306c444e0e0675fcdce398ecca98e1c1765d149[m
+Author: JIVitian <jivitian@gmail.com>
+Date:   Fri Sep 24 00:47:53 2021 -0300
+
+    Añadido de try catch y registros con nlog en la eliminación de cadetes
+
+[33mcommit ae3d5b7123c37a5256374300ec224b38d98ed9cc[m
+Author: JIVitian <jivitian@gmail.com>
+Date:   Fri Sep 24 00:43:47 2021 -0300
+
+    CRUD de cadetes funcionando
+
+[33mcommit e5f8eca20f282e80aa5a872d7ccbf71a07ad1a45[m
+Author: JIVitian <jivitian@gmail.com>
+Date:   Fri Sep 24 00:38:50 2021 -0300
+
+    La Edición de los cadetes funciona correctamente
+
+[33mcommit 636c9175e39e88b2b2f7d6e6a0363c837d943bdf[m
+Author: JIVitian <jivitian@gmail.com>
+Date:   Fri Sep 24 00:24:54 2021 -0300
+
+    Se muestra correctamente la vista para editar cadetes
+
+[33mcommit d304a866e20241531f2566437ef09f13066f1f6d[m
+Author: JIVitian <jivitian@gmail.com>
+Date:   Thu Sep 23 21:56:28 2021 -0300
+
+    Añadidos botones para editar y eliminar cadetes
+
+[33mcommit dfbe6e677547db2ddf28f2aec838af5d6c8b14c4[m
+Author: JIVitian <jivitian@gmail.com>
+Date:   Thu Sep 23 18:22:08 2021 -0300
+
+    Cambio de DeliveryMan a DeliveryBoy en todo el proyecto
+
+[33mcommit 24bcd574c1eb7eeddc4991427820af6b71a359d4[m
+Author: JIVitian <jivitian@gmail.com>
+Date:   Thu Sep 23 17:31:29 2021 -0300
+
+    Carpetas Factories y Repositories Creadas
+
+[33mcommit 9752978a7badcf4158dabcf7b61ea3def6927791[m
+Author: JIVitian <jivitian@gmail.com>
+Date:   Wed Sep 22 22:26:02 2021 -0300
+
+    Eliminando constructor de DeliveryMan
+
+[33mcommit 0ad2a0f7d9aaa9739ef2c085c185adcb47f96d62[m
+Author: JIVitian <jivitian@gmail.com>
+Date:   Wed Sep 22 22:23:21 2021 -0300
+
+    Se puede listar y crear correctamente los cadetes
+
+[33mcommit c188acac01f14e1d537de6e158bf076de7c8da4b[m
+Author: JIVitian <jivitian@gmail.com>
+Date:   Wed Sep 22 17:33:36 2021 -0300
+
+    Inyección de dependencia de nlog e implementación en el controlador de cadetes
+
+[33mcommit 45d9eed15504117162b3fabaae1ba4166c30e659[m
+Author: JIVitian <jivitian@gmail.com>
+Date:   Tue Sep 21 23:48:08 2021 -0300
+
+    Añadidos los links hacia Cadetes y Pedidos
+
+[33mcommit 6371f728cb316b4058fca82eeccc8f9370772a4e[m
+Author: JIVitian <jivitian@gmail.com>
+Date:   Tue Sep 21 23:47:55 2021 -0300
+
+    Añadidos los links hacia Cadetes y Pedidos
+
+[33mcommit 0ced06ffb03833bec59a102b4752bcccd6ca5864[m
+Author: JIVitian <jivitian@gmail.com>
+Date:   Sat Sep 18 22:39:21 2021 -0300
+
+    Tratando de avanzar...
+
+[33mcommit d37a7277dcd9b53c831f390ca2cfd41a4bc3888e[m
+Author: JIVitian <jivitian@gmail.com>
+Date:   Tue Sep 7 22:07:01 2021 -0300
+
+    Cambios menores
+
+[33mcommit a3feee952f70f68a577c095d5315060a99a692cf[m
+Author: JIVitian <jivitian@gmail.com>
+Date:   Tue Sep 7 22:05:15 2021 -0300
+
+    Añadidos los atributos del cadete y la clase pedidos
+
+[33mcommit 264a6566dedd4b1c56e0eedafbee82e9a4a05124[m
+Author: JIVitian <jivitian@gmail.com>
+Date:   Tue Sep 7 22:00:06 2021 -0300
+
+    Añadido NLog y controlador adaptado
+
+[33mcommit 9e3cb44d0519b7e167c0ea83157a094e03f3aa98[m
+Author: JIVitian <jivitian@gmail.com>
+Date:   Tue Sep 7 21:21:40 2021 -0300
+
+    Añadido el MVC de los cadetes
+
+[33mcommit 78bfd4c126d5382882ac3bd8f3ec3360d5d15427[m
+Author: JIVitian <jivitian@gmail.com>
+Date:   Tue Sep 7 21:07:13 2021 -0300
+
+    Commit inicial

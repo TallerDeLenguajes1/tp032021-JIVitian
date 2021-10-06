@@ -16,7 +16,7 @@ namespace TL2_TP3
     public class Startup
     {
         static DeliveryRepository delivery = new DeliveryRepository();
-        static List<Order> orders = new List<Order>();
+        static OrderRepository orders = new OrderRepository(delivery);
 
         public Startup(IConfiguration configuration)
         {

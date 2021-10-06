@@ -440,3 +440,6 @@ C:\Users\jivit\Desktop\Mis Cosas\Facultad\Licenciatura En Informatica\2do Anio\T
 C:\Users\jivit\Desktop\Mis Cosas\Facultad\Licenciatura En Informatica\2do Anio\Taller de Lenguajes 2\Practica\TP3-Vitian\TL2-TP3\TL2-TP3\obj\Debug\net5.0\Razor\Views\Order\Create.cshtml.g.cs
 C:\Users\jivit\Desktop\Mis Cosas\Facultad\Licenciatura En Informatica\2do Anio\Taller de Lenguajes 2\Practica\TP3-Vitian\TL2-TP3\TL2-TP3\obj\Debug\net5.0\Razor\Views\Order\Edit.cshtml.g.cs
 C:\Users\jivit\Desktop\Mis Cosas\Facultad\Licenciatura En Informatica\2do Anio\Taller de Lenguajes 2\Practica\TP3-Vitian\TL2-TP3\TL2-TP3\bin\Debug\net5.0\DeliveryBoys.JSON
+C:\Users\jivit\Desktop\Mis Cosas\Facultad\Licenciatura En Informatica\2do Anio\Taller de Lenguajes 2\Practica\TP3-Vitian\TL2-TP3\TL2-TP3\bin\Debug\net5.0\Orders.JSON
+C:\Users\jivit\Desktop\Mis Cosas\Facultad\Licenciatura En Informatica\2do Anio\Taller de Lenguajes 2\Practica\TP3-Vitian\TL2-TP3\TL2-TP3\obj\Debug\net5.0\Razor\Views\Client\Index.cshtml.g.cs
+C:\Users\jivit\Desktop\Mis Cosas\Facultad\Licenciatura En Informatica\2do Anio\Taller de Lenguajes 2\Practica\TP3-Vitian\TL2-TP3\TL2-TP3\obj\Debug\net5.0\Razor\Views\Client\Create.cshtml.g.cs

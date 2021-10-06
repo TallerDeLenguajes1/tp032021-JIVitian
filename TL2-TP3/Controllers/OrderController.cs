@@ -13,21 +13,19 @@ namespace TL2_TP3.Controllers
     public class OrderController : Controller
     {
         private readonly Logger nlog;
-        private readonly List<Order> orders;
-        private readonly DeliveryRepository delivery;
+        private readonly OrderRepository orders;
 
-        public OrderController(Logger nlog, List<Order> orders, DeliveryRepository delivery)
+        public OrderController(Logger nlog, OrderRepository orders, DeliveryRepository delivery)
         {
             this.nlog = nlog;
             this.orders = orders;
-            this.delivery = delivery;
         }
 
         // GET: OrderController
         public ActionResult Index()
         {
             nlog.Info("Order Index.");
-            return View(orders);
+            return View(orders.List);
         }
 
         // GET: OrderController/Details/5
@@ -39,7 +37,7 @@ namespace TL2_TP3.Controllers
         // GET: OrderController/Create
         public ActionResult Create()
         {
-            return View(delivery.Delivery.DeliveryBoyList);
+            return View(orders.delivery.Delivery.DeliveryBoyList);
         }
 
         // POST: OrderController/Create
@@ -49,23 +47,14 @@ namespace TL2_TP3.Controllers
         {
             try
             {
-                var order = new Order {
-                    Number = orders.Count > 0 ? orders.Last().Number + 1 : 1,
-                    Observation = collection["Observation"],
-                    State = 0, // Initialize in ToConfirm
-                    Client = new Client { Name = "Juan Perez", Address = "Mikasa", Id = 1, Phone = "1234" }
-                };
+                orders.AddOrder(collection);
 
-                orders.Add(order);
-
-                delivery.AddOrder(int.Parse(collection["DeliveryBoy"]), order);
-
-                nlog.Info($"Order N°{order.Number} Created.");
+                nlog.Info($"Order N°{orders.List.Last()} Created.");
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                nlog.Error("Order could'nt be created.");
+                nlog.Error("Order couldn't be created.");
                 return View();
             }
         }
@@ -73,7 +62,7 @@ namespace TL2_TP3.Controllers
         // GET: OrderController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            return View(orders.List.Find(x => x.Number == id));
         }
 
         // POST: OrderController/Edit/5
@@ -83,12 +72,13 @@ namespace TL2_TP3.Controllers
         {
             try
             {
+                orders.EditOrder(id, collection);
                 nlog.Info($"Order N°{id} Updated.");
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                nlog.Error($"Order N°{id} could'nt be Updated.");
+                nlog.Error($"Order N°{id} couldn't be Updated.");
                 return View();
             }
         }
@@ -98,14 +88,14 @@ namespace TL2_TP3.Controllers
         {
             try
             {
-                orders.RemoveAll(order => order.Number == id);
+                orders.List.RemoveAll(order => order.Number == id);
                 nlog.Info($"Order N°{id} Deleted.");
                 //return View();
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                nlog.Error("Order could not be Deleted.");
+                nlog.Error("Order couldn't be Deleted.");
                 return View("Error");
             }
         }
@@ -122,7 +112,7 @@ namespace TL2_TP3.Controllers
             }
             catch
             {
-                nlog.Error($"Order N°{id} could'nt be Deleted.");
+                nlog.Error($"Order N°{id} couldn't be Deleted.");
                 return View();
             }
         }
