@@ -15,19 +15,17 @@ namespace TL2_TP3.Repositories
             List = ReadJSON();
         }
 
-        public void AddClient(IFormCollection collection)
+        public void AddClient(Client client)
         {
-            List.Add(new Client { Id = List.Count() > 0 ? List.Last().Id + 1 : 1, Name = collection["Name"], Address = collection["Address"], Phone = collection["Phone"] });
+            client.Id = List.Count > 0 ? List.Last().Id + 1 : 1;
+            List.Add(client);
             SaveJSON();
         }
 
-        public void EditClient(int id, IFormCollection collection)
+        public void EditClient(Client client)
         {
-            var client = List.Find(x => x.Id == id);
-            client.Name = collection["Name"];
-            client.Address = collection["Address"];
-            client.Phone = collection["Phone"];
-
+            var oldClient = List.FindIndex(x => x.Id == client.Id);
+            List[oldClient] = client;
             SaveJSON();
         }
 

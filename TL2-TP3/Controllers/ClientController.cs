@@ -44,12 +44,12 @@ namespace TL2_TP3.Controllers
         // POST: ClientController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Client client)
         {
             try
             {
-                clients.AddClient(collection);
-                nlog.Info($"Order N°{clients.List.Last().Id} Created.");
+                clients.AddClient(client);
+                nlog.Info($"Order N°{client.Id} Created.");
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception e)
@@ -60,25 +60,30 @@ namespace TL2_TP3.Controllers
         }
 
         // GET: ClientController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-            return View(clients.List.Find(x => x.Id == id));
+            if (id == null || id == 0)
+                return NotFound();
+
+            var client = clients.List.Find(x => x.Id == id);
+
+            return client != null ? View(client) : NotFound();
         }
 
         // POST: ClientController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(Client client)
         {
             try
             {
-                clients.EditClient(id, collection);
-                nlog.Info($"Client N°{id} Updated.");
+                clients.EditClient(client);
+                nlog.Info($"Client N°{client.Id} Updated.");
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception e)
             {
-                nlog.Error($"Client N°{id} couldn't be Updated. Message: {e.Message}");
+                nlog.Error($"Client N°{client.Id} couldn't be Updated. Message: {e.Message}");
                 return View();
             }
         }
@@ -93,7 +98,7 @@ namespace TL2_TP3.Controllers
                 return RedirectToAction(nameof(Index));
             } catch (Exception e)
             {
-                nlog.Error($"Client couldn't be Deleted. Message: {e.Message}");
+                nlog.Error($"Client N°{id} couldn't be Deleted. Message: {e.Message}");
                 return View("Error");
             }
         }
