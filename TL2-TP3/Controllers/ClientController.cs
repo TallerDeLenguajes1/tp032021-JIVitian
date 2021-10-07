@@ -7,24 +7,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TL2_TP3.Models;
+using TL2_TP3.Repositories;
 
 namespace TL2_TP3.Controllers
 {
     public class ClientController : Controller
     {
         private readonly Logger nlog;
-        private readonly List<Client> clients;
+        private readonly ClientRepository clients;
 
-        public ClientController(Logger nlog, List<Client> delivery)
+        public ClientController(Logger nlog, ClientRepository clients)
         {
             this.nlog = nlog;
-            this.clients = delivery;
+            this.clients = clients;
         }
 
         // GET: ClientController
         public ActionResult Index()
         {
-            return View(clients);
+            nlog.Info("Client Index.");
+            return View(clients.List);
         }
 
         // GET: ClientController/Details/5
@@ -46,11 +48,13 @@ namespace TL2_TP3.Controllers
         {
             try
             {
-                clients.Add(new Client { Id = clients.Count() > 1 ? clients.Last().Id + 1  : 1, Name = collection["Name"], Address = collection["Address"], Phone = collection["Phone"] });
+                clients.AddClient(collection);
+                nlog.Info($"Order N°{clients.List.Last().Id} Created.");
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception e)
             {
+                nlog.Error($"Order couldn't be created. Message: {e.Message}");
                 return View();
             }
         }
@@ -58,7 +62,7 @@ namespace TL2_TP3.Controllers
         // GET: ClientController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            return View(clients.List.Find(x => x.Id == id));
         }
 
         // POST: ClientController/Edit/5
@@ -68,10 +72,13 @@ namespace TL2_TP3.Controllers
         {
             try
             {
+                clients.EditClient(id, collection);
+                nlog.Info($"Client N°{id} Updated.");
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception e)
             {
+                nlog.Error($"Client N°{id} couldn't be Updated. Message: {e.Message}");
                 return View();
             }
         }
@@ -79,7 +86,16 @@ namespace TL2_TP3.Controllers
         // GET: ClientController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            try
+            {
+                clients.DeleteClient(id);
+                nlog.Info($"Client N°{id} Deleted.");
+                return RedirectToAction(nameof(Index));
+            } catch (Exception e)
+            {
+                nlog.Error($"Client couldn't be Deleted. Message: {e.Message}");
+                return View("Error");
+            }
         }
 
         // POST: ClientController/Delete/5

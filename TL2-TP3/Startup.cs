@@ -17,7 +17,7 @@ namespace TL2_TP3
     {
         static DeliveryRepository delivery = new DeliveryRepository();
         static OrderRepository orders = new OrderRepository(delivery);
-        static List<Client> clientes = new List<Client>();
+        static ClientRepository clientes = new ClientRepository();
 
         public Startup(IConfiguration configuration)
         {

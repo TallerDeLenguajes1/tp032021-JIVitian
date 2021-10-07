@@ -48,8 +48,7 @@ namespace TL2_TP3.Controllers
             try
             {
                 orders.AddOrder(collection);
-
-                nlog.Info($"Order N°{orders.List.Last()} Created.");
+                nlog.Info($"Order N°{orders.List.Last().Number} Created.");
                 return RedirectToAction(nameof(Index));
             }
             catch
