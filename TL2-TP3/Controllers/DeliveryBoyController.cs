@@ -55,9 +55,9 @@ namespace TL2_TP3.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception e)
             {
-                nlog.Error("Delviery Boy could not be created.");
+                nlog.Error($"Delviery Boy could not be created. Message: {e.Message}");
                 return View();
             }
         }
@@ -79,9 +79,9 @@ namespace TL2_TP3.Controllers
                 nlog.Info("Delivery Boy Updated.");
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception e)
             {
-                nlog.Error("Delviery Boy could not be Updated.");
+                nlog.Error($"Delviery Boy could not be Updated. Message: {e.Message}");
                 return View();
             }
         }
@@ -95,9 +95,9 @@ namespace TL2_TP3.Controllers
                 nlog.Info($"Delivery Boy {id} Deleted.");
                 //return View();
                 return RedirectToAction(nameof(Index));
-            } catch
+            } catch (Exception e)
             {
-                nlog.Error("Delviery Boy could not be Deleted.");
+                nlog.Error($"Delviery Boy could not be Deleted. Message: {e.Message}");
                 return View("Error");
             }
         }
@@ -112,9 +112,9 @@ namespace TL2_TP3.Controllers
                 nlog.Info("Delivery Boy Deleted.");
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch(Exception e)
             {
-                nlog.Error("Delviery Boy could'nt be Deleted.");
+                nlog.Error($"Delviery Boy could'nt be Deleted. Message: {e.Message}");
                 return View();
             }
         }

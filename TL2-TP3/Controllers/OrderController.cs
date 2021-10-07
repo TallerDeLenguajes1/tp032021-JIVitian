@@ -51,9 +51,9 @@ namespace TL2_TP3.Controllers
                 nlog.Info($"Order N°{orders.List.Last().Number} Created.");
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception e)
             {
-                nlog.Error("Order couldn't be created.");
+                nlog.Error($"Order couldn't be created. Message: {e.Message}");
                 return View();
             }
         }
@@ -75,9 +75,9 @@ namespace TL2_TP3.Controllers
                 nlog.Info($"Order N°{id} Updated.");
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception e)
             {
-                nlog.Error($"Order N°{id} couldn't be Updated.");
+                nlog.Error($"Order N°{id} couldn't be Updated.  Message: {e.Message}");
                 return View();
             }
         }
@@ -91,9 +91,9 @@ namespace TL2_TP3.Controllers
                 nlog.Info($"Order N°{id} Deleted.");
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception e)
             {
-                nlog.Error("Order couldn't be Deleted.");
+                nlog.Error($"Order couldn't be Deleted.  Message: {e.Message}");
                 return View("Error");
             }
         }
@@ -108,9 +108,9 @@ namespace TL2_TP3.Controllers
                 nlog.Info($"Order N°{id} Deleted.");
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception e)
             {
-                nlog.Error($"Order N°{id} couldn't be Deleted.");
+                nlog.Error($"Order N°{id} couldn't be Deleted.  Message: {e.Message}");
                 return View();
             }
         }
