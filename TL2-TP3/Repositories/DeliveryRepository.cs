@@ -3,9 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text.Json;
+//using System.Text.Json;
 using System.Threading.Tasks;
 using TL2_TP3.Models;
+using Newtonsoft.Json;
 
 namespace TL2_TP3.Repositories
 {
@@ -31,7 +32,8 @@ namespace TL2_TP3.Repositories
                     string json = strReader.ReadToEnd();
                     strReader.Close();
                     strReader.Dispose();
-                    return json != "" ? JsonSerializer.Deserialize<List<DeliveryBoy>>(json) : new List<DeliveryBoy>();
+                    //return json != "" ? JsonSerializer.Deserialize<List<DeliveryBoy>>(json) : new List<DeliveryBoy>();
+                    return JsonConvert.DeserializeObject<List<DeliveryBoy>>(json);
                 }
             }
             else
@@ -43,7 +45,9 @@ namespace TL2_TP3.Repositories
 
         private void SaveDeliveryJSON()
         {
-            string DatosJson = JsonSerializer.Serialize(Delivery.DeliveryBoyList);
+            //string DatosJson = JsonSerializer.Serialize(Delivery.DeliveryBoyList);
+            string DatosJson = JsonConvert.SerializeObject(Delivery.DeliveryBoyList);
+
 
             using (FileStream archivo = new FileStream(path, FileMode.Create))
             {
@@ -91,6 +95,11 @@ namespace TL2_TP3.Repositories
             Delivery.DeliveryBoyList.Find(x => x.Id == id).Orders.Add(order);
 
             SaveDeliveryJSON();
+        }
+
+        public void DeleteOrder(int id)
+        {
+            Delivery.DeliveryBoyList.ForEach(db => db.Orders.RemoveAll(order => order.Number == id));
         }
     }
 }

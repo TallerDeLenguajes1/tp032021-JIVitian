@@ -14,11 +14,13 @@ namespace TL2_TP3.Controllers
     {
         private readonly Logger nlog;
         private readonly OrderRepository orders;
+        private readonly DeliveryRepository delivery;
 
         public OrderController(Logger nlog, OrderRepository orders, DeliveryRepository delivery)
         {
             this.nlog = nlog;
             this.orders = orders;
+            this.delivery = delivery;
         }
 
         // GET: OrderController
@@ -43,11 +45,13 @@ namespace TL2_TP3.Controllers
         // POST: OrderController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Order order)
+        public ActionResult Create(/*Order order, */IFormCollection collection)
         {
             try
             {
-                //orders.AddOrder(/*collection*/);
+                //orders.AddOrder(order);
+                orders.AddOrder(collection);
+                //delivery.AddOrder(int.Parse(collection['DeliveryBoy']), order);
                 nlog.Info($"Order N°{orders.List.Last().Number} Created.");
                 return RedirectToAction(nameof(Index));
             }
@@ -59,25 +63,32 @@ namespace TL2_TP3.Controllers
         }
 
         // GET: OrderController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-            return View(orders.List.Find(x => x.Number == id));
+            if (id == null || id == 0)
+                return NotFound();
+
+            var order = orders.List.Find(x => x.Number == id);
+
+            return order != null ? View(order) : NotFound();
+            //return View(orders.List.Find(x => x.Number == id));
         }
 
         // POST: OrderController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(/*int id, IFormCollection collection*/ Order order)
         {
             try
             {
-                orders.EditOrder(id, collection);
-                nlog.Info($"Order N°{id} Updated.");
+                //orders.EditOrder(id, collection);
+                orders.EditOrder(order);
+                nlog.Info($"Order N°{order.Number} Updated.");
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception e)
             {
-                nlog.Error($"Order N°{id} couldn't be Updated.  Message: {e.Message}");
+                nlog.Error($"Order N°{order.Number} couldn't be Updated.  Message: {e.Message}");
                 return View();
             }
         }
@@ -88,6 +99,7 @@ namespace TL2_TP3.Controllers
             try
             {
                 orders.DeleteOrder(id);
+                delivery.DeleteOrder(id);
                 nlog.Info($"Order N°{id} Deleted.");
                 return RedirectToAction(nameof(Index));
             }

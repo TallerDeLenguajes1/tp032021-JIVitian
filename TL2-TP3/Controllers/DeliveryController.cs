@@ -10,7 +10,7 @@ namespace TL2_TP3.Controllers
 {
     public class DeliveryController : Controller
     {
-        DeliveryRepository deliveries;
+        //DeliveryRepository deliveries;
         // GET: DeliveryController
         public ActionResult Index()
         {

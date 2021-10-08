@@ -48,8 +48,11 @@ namespace TL2_TP3.Controllers
         {
             try
             {
-                clients.AddClient(client);
-                nlog.Info($"Order N°{client.Id} Created.");
+                if (ModelState.IsValid)
+                {
+                    clients.AddClient(client);
+                    nlog.Info($"Order N°{client.Id} Created.");
+                }
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception e)
@@ -75,15 +78,17 @@ namespace TL2_TP3.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Client client)
         {
-            try
+            //try
+            if (ModelState.IsValid)
             {
                 clients.EditClient(client);
                 nlog.Info($"Client N°{client.Id} Updated.");
                 return RedirectToAction(nameof(Index));
             }
-            catch (Exception e)
+            //catch (Exception e)
+            else
             {
-                nlog.Error($"Client N°{client.Id} couldn't be Updated. Message: {e.Message}");
+                nlog.Error($"Client N°{client.Id} couldn't be Updated."/*Message: { e.Message}*/);
                 return View();
             }
         }
