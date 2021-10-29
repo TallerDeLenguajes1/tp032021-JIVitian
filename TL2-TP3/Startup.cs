@@ -13,55 +13,58 @@ using TL2_TP3.Repositories;
 
 namespace TL2_TP3
 {
-    public class Startup
+  public class Startup
+  {
+    static DeliveryRepository delivery = new DeliveryRepository();
+    static OrderRepository orders = new OrderRepository(delivery);
+    static ClientRepository clientes = new ClientRepository();
+
+    public Startup(IConfiguration configuration)
     {
-        static DeliveryRepository delivery = new DeliveryRepository();
-        static OrderRepository orders = new OrderRepository(delivery);
-        static ClientRepository clientes = new ClientRepository();
-
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
-
-        public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddControllersWithViews().AddRazorRuntimeCompilation();
-            services.AddSingleton(NLog.LogManager.GetCurrentClassLogger());
-            services.AddSingleton(delivery);
-            services.AddSingleton(orders);
-            services.AddSingleton(clientes);
-        }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-            }
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
-
-            app.UseRouting();
-
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-            });
-        }
+      Configuration = configuration;
     }
+
+    public IConfiguration Configuration { get; }
+
+    // This method gets called by the runtime. Use this method to add services to the container.
+    public void ConfigureServices(IServiceCollection services)
+    {
+      var connectionString = Configuration.GetConnectionString("Default");
+      DeliveryBoyRepository RepoCadetes = new(connectionString);
+      services.AddSingleton(RepoCadetes);
+      services.AddControllersWithViews().AddRazorRuntimeCompilation();
+      services.AddSingleton(NLog.LogManager.GetCurrentClassLogger());
+      services.AddSingleton(delivery);
+      services.AddSingleton(orders);
+      services.AddSingleton(clientes);
+    }
+
+    // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    {
+      if (env.IsDevelopment())
+      {
+        app.UseDeveloperExceptionPage();
+      }
+      else
+      {
+        app.UseExceptionHandler("/Home/Error");
+        // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+        app.UseHsts();
+      }
+      app.UseHttpsRedirection();
+      app.UseStaticFiles();
+
+      app.UseRouting();
+
+      app.UseAuthorization();
+
+      app.UseEndpoints(endpoints =>
+      {
+        endpoints.MapControllerRoute(
+                  name: "default",
+                  pattern: "{controller=Home}/{action=Index}/{id?}");
+      });
+    }
+  }
 }

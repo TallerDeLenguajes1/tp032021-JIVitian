@@ -16,18 +16,20 @@ namespace TL2_TP3.Controllers
 
         private readonly Logger nlog;
         private readonly DeliveryRepository delivery;
+        private readonly DeliveryBoyRepository RepoCadetes;
 
-        public DeliveryBoyController(Logger nlog, DeliveryRepository delivery)
+        public DeliveryBoyController(Logger nlog, DeliveryRepository delivery, DeliveryBoyRepository RepoCadetes)
         {
             this.nlog = nlog;
             this.delivery = delivery;
+            this.RepoCadetes = RepoCadetes;
         }
 
         // GET: DeliveryBoyController
         public ActionResult Index()
         {
             nlog.Info("Delivery Boy Index.");
-            return View(delivery.Delivery.DeliveryBoyList);
+            return View(RepoCadetes.getAll().ToList());
         }
 
         // GET: DeliveryBoyController/Details/5
