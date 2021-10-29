@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "6sJr9nFnwptISCxM1IQQDGzjEYm029OCr63vsGm2zdu8qRCAG9uv1WZa6Rle8KIMrpLLvt1lKXuyM5AzgvAUQA==",
+  "dgSpecHash": "YQ/L/EptbMU/qW6zHgU+XtfO+IQhsbmlJyL0g7a1Z4dA0M+WFnCs0EWxxUT97BBH+9b72oyVjIz7W6BfVs1UDg==",
   "success": true,
   "projectFilePath": "C:\\Users\\jivit\\Desktop\\Mis Cosas\\Facultad\\Licenciatura En Informatica\\2do Anio\\Taller de Lenguajes 2\\Practica\\TP3-Vitian\\TL2-TP3\\TL2-TP3\\TL2-TP3.csproj",
   "expectedPackageFiles": [
@@ -61,8 +61,8 @@
     "C:\\Users\\jivit\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\jivit\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\jivit\\.nuget\\packages\\nlog\\4.7.12\\nlog.4.7.12.nupkg.sha512",
-    "C:\\Users\\jivit\\.nuget\\packages\\nlog.extensions.logging\\1.7.4\\nlog.extensions.logging.1.7.4.nupkg.sha512",
-    "C:\\Users\\jivit\\.nuget\\packages\\nlog.web.aspnetcore\\4.14.0\\nlog.web.aspnetcore.4.14.0.nupkg.sha512",
+    "C:\\Users\\jivit\\.nuget\\packages\\nlog.extensions.logging\\1.6.4\\nlog.extensions.logging.1.6.4.nupkg.sha512",
+    "C:\\Users\\jivit\\.nuget\\packages\\nlog.web.aspnetcore\\4.9.3\\nlog.web.aspnetcore.4.9.3.nupkg.sha512",
     "C:\\Users\\jivit\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
     "C:\\Users\\jivit\\.nuget\\packages\\runtime.native.system.data.sqlclient.sni\\4.7.0\\runtime.native.system.data.sqlclient.sni.4.7.0.nupkg.sha512",
     "C:\\Users\\jivit\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
