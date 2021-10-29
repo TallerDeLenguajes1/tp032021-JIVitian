@@ -58,7 +58,7 @@ namespace TL2_TP3.Repositories
             }
         }
 
-        public void AddDeliveryBoy(IFormCollection collection)
+        public void AddDeliveryBoy(IFormCollection collection /*DeliveryBoy deliveryBoy*/)
         {
             DeliveryBoy dealer = new DeliveryBoy
             {
@@ -68,7 +68,8 @@ namespace TL2_TP3.Repositories
                 Phone = collection["Phone"]
             };
 
-            Delivery.DeliveryBoyList.Add(dealer);
+
+            Delivery.DeliveryBoyList.Add(/*deliveryBoy*/ dealer);
 
             SaveDeliveryJSON();
         }
@@ -97,9 +98,21 @@ namespace TL2_TP3.Repositories
             SaveDeliveryJSON();
         }
 
+        public void EditOrder(Order order)
+        {
+            var oldOrder = Delivery.DeliveryBoyList.FindIndex(x => x.Id == order.Number);
+            var deliveryBoy = Delivery.DeliveryBoyList.Where(db => db.Orders.Contains(order)).FirstOrDefault();
+            if(deliveryBoy != null)
+            {
+                deliveryBoy.Orders[oldOrder] = order;
+                SaveDeliveryJSON();
+            }
+        }
+
         public void DeleteOrder(int id)
         {
             Delivery.DeliveryBoyList.ForEach(db => db.Orders.RemoveAll(order => order.Number == id));
+            SaveDeliveryJSON();
         }
     }
 }

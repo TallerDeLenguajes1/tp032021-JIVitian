@@ -77,18 +77,19 @@ namespace TL2_TP3.Controllers
         // POST: OrderController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(/*int id, IFormCollection collection*/ Order order)
+        public ActionResult Edit(int id, IFormCollection collection /*Order order*/)
         {
             try
             {
-                //orders.EditOrder(id, collection);
-                orders.EditOrder(order);
-                nlog.Info($"Order N°{order.Number} Updated.");
+                orders.EditOrder(id, collection);
+                //orders.EditOrder(order);
+                //delivery.EditOrder(order);
+                nlog.Info($"Order N°{/*order.Number*/ id} Updated.");
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception e)
             {
-                nlog.Error($"Order N°{order.Number} couldn't be Updated.  Message: {e.Message}");
+                nlog.Error($"Order N°{/*order.Number*/ id} couldn't be Updated.  Message: {e.Message}");
                 return View();
             }
         }

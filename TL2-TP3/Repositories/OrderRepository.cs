@@ -35,13 +35,13 @@ namespace TL2_TP3.Repositories
             SaveJSON();
         }
 
-        public void EditOrder(/*int id, IFormCollection collection*/ Order order)
+        public void EditOrder(int id, IFormCollection collection/* Order order*/)
         {
-            //var order = List.Find(x => x.Number == id);
-            //order.Observation = collection["Observation"];
-            //order.State = (State)int.Parse(collection["State"]);
-            var oldClient = List.FindIndex(x => x.Number == order.Number);
-            List[oldClient] = order;
+            var order = List.Find(x => x.Number == id);
+            order.Observation = collection["Observation"];
+            order.State = (State)int.Parse(collection["State"]);
+            //var oldClient = List.FindIndex(x => x.Number == order.Number);
+            //List[oldClient] = order;
             SaveJSON();
         }
 

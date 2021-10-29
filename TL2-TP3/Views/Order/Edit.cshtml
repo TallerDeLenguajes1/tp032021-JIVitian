@@ -8,6 +8,8 @@
 <div class="container">
     <form class="w-50 m-auto" asp-action="Edit">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input asp-for="Number" type="hidden" class="form-control" />
+        <input asp-for="Client" type="hidden" class="form-control" />
         <div class="form-group">
             <label asp-for="Observation" class="control-label"></label>
             <input asp-for="Observation" class="form-control" />
