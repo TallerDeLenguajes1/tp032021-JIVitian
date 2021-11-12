@@ -29,7 +29,7 @@ namespace TL2_TP3.Controllers
         public ActionResult Index()
         {
             nlog.Info("Delivery Boy Index.");
-            return View(RepoCadetes.getAll());
+            return View(RepoCadetes.GetAll());
         }
 
         // GET: DeliveryBoyController/Details/5
