@@ -1,24 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jivit\\Desktop\\Mis Cosas\\Facultad\\Licenciatura En Informatica\\2do Anio\\Taller de Lenguajes 2\\Practica\\TP3-Vitian\\TL2-TP3\\TL2-TP3\\TL2-TP3.csproj": {}
+    "C:\\Users\\Alumno\\Documents\\GitHub\\tpnro-6-JIVitian\\TL2-TP3\\TL2-TP3.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jivit\\Desktop\\Mis Cosas\\Facultad\\Licenciatura En Informatica\\2do Anio\\Taller de Lenguajes 2\\Practica\\TP3-Vitian\\TL2-TP3\\TL2-TP3\\TL2-TP3.csproj": {
+    "C:\\Users\\Alumno\\Documents\\GitHub\\tpnro-6-JIVitian\\TL2-TP3\\TL2-TP3.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jivit\\Desktop\\Mis Cosas\\Facultad\\Licenciatura En Informatica\\2do Anio\\Taller de Lenguajes 2\\Practica\\TP3-Vitian\\TL2-TP3\\TL2-TP3\\TL2-TP3.csproj",
+        "projectUniqueName": "C:\\Users\\Alumno\\Documents\\GitHub\\tpnro-6-JIVitian\\TL2-TP3\\TL2-TP3.csproj",
         "projectName": "TL2-TP3",
-        "projectPath": "C:\\Users\\jivit\\Desktop\\Mis Cosas\\Facultad\\Licenciatura En Informatica\\2do Anio\\Taller de Lenguajes 2\\Practica\\TP3-Vitian\\TL2-TP3\\TL2-TP3\\TL2-TP3.csproj",
-        "packagesPath": "C:\\Users\\jivit\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jivit\\Desktop\\Mis Cosas\\Facultad\\Licenciatura En Informatica\\2do Anio\\Taller de Lenguajes 2\\Practica\\TP3-Vitian\\TL2-TP3\\TL2-TP3\\obj\\",
+        "projectPath": "C:\\Users\\Alumno\\Documents\\GitHub\\tpnro-6-JIVitian\\TL2-TP3\\TL2-TP3.csproj",
+        "packagesPath": "C:\\Users\\Alumno\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Alumno\\Documents\\GitHub\\tpnro-6-JIVitian\\TL2-TP3\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\jivit\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Alumno\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
@@ -78,7 +79,7 @@
             },
             "NLog.Web.AspNetCore": {
               "target": "Package",
-              "version": "[4.9.*, )"
+              "version": "[4.14.0, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
@@ -111,7 +112,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }
