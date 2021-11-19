@@ -103,9 +103,13 @@ namespace TL2_TP3.Models
         {
             try
             {
-                string query = @"UPDATE Cadetes
-                                        SET cadeteNombre = @name, cadeteTelefono = @phone, cadeteDireccion = @address
-                                        WHERE cadeteID = @id";
+                string query = @"
+                                 UPDATE DeliveryBoys
+                                 SET cadeteNombre = @name,
+                                     cadeteTelefono = @phone,
+                                     cadeteDireccion = @address
+                                 WHERE cadeteID = @id
+                               ";
 
                 using (var conexion = new SQLiteConnection(connectionString))
                 {
@@ -130,7 +134,10 @@ namespace TL2_TP3.Models
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            string query = @"
+                                 DELETE FROM DeliveryBoys
+                                 WHERE id = @id
+                               ";
         }
     }
 }
