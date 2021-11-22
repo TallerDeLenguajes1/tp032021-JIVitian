@@ -950,24 +950,23 @@
           "lib/netstandard2.0/NLog.dll": {}
         }
       },
-      "NLog.Extensions.Logging/1.7.4": {
+      "NLog.Extensions.Logging/1.6.4": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.Configuration.Abstractions": "5.0.0",
-          "Microsoft.Extensions.Logging": "5.0.0",
-          "NLog": "4.7.11"
+          "Microsoft.Extensions.Logging": "3.0.0",
+          "NLog": "4.7.2"
         },
         "compile": {
-          "lib/net5.0/NLog.Extensions.Logging.dll": {}
+          "lib/netcoreapp3.0/NLog.Extensions.Logging.dll": {}
         },
         "runtime": {
-          "lib/net5.0/NLog.Extensions.Logging.dll": {}
+          "lib/netcoreapp3.0/NLog.Extensions.Logging.dll": {}
         }
       },
-      "NLog.Web.AspNetCore/4.14.0": {
+      "NLog.Web.AspNetCore/4.9.3": {
         "type": "package",
         "dependencies": {
-          "NLog.Extensions.Logging": "1.7.4"
+          "NLog.Extensions.Logging": "1.6.4"
         },
         "compile": {
           "lib/netcoreapp3.0/NLog.Web.AspNetCore.dll": {}
@@ -4099,20 +4098,17 @@
         "nlog.nuspec"
       ]
     },
-    "NLog.Extensions.Logging/1.7.4": {
-      "sha512": "/dMxI/lBPNhKe9uONCQaZ3JYSHJh9/yez4Uqc6yIo2hIGaoi8sbQg7WQqW5/1WAIquhrG/SeCEZUTGMiRSQAHw==",
+    "NLog.Extensions.Logging/1.6.4": {
+      "sha512": "ESOBd/bzxFacwpWTdTXaAaItJz/0Mzibyw65YB0uQT4pf2hXtwHp2626qEiVOmaacIQbJH5wGpBLNcVpbQLpKA==",
       "type": "package",
-      "path": "nlog.extensions.logging/1.7.4",
+      "path": "nlog.extensions.logging/1.6.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "N.png",
         "lib/net451/NLog.Extensions.Logging.dll",
         "lib/net451/NLog.Extensions.Logging.xml",
         "lib/net461/NLog.Extensions.Logging.dll",
         "lib/net461/NLog.Extensions.Logging.xml",
-        "lib/net5.0/NLog.Extensions.Logging.dll",
-        "lib/net5.0/NLog.Extensions.Logging.xml",
         "lib/netcoreapp3.0/NLog.Extensions.Logging.dll",
         "lib/netcoreapp3.0/NLog.Extensions.Logging.xml",
         "lib/netstandard1.3/NLog.Extensions.Logging.dll",
@@ -4121,18 +4117,17 @@
         "lib/netstandard1.5/NLog.Extensions.Logging.xml",
         "lib/netstandard2.0/NLog.Extensions.Logging.dll",
         "lib/netstandard2.0/NLog.Extensions.Logging.xml",
-        "nlog.extensions.logging.1.7.4.nupkg.sha512",
+        "nlog.extensions.logging.1.6.4.nupkg.sha512",
         "nlog.extensions.logging.nuspec"
       ]
     },
-    "NLog.Web.AspNetCore/4.14.0": {
-      "sha512": "5fTviEu/f+mIxucGHmcx1q/mtJGo8EZbxACD57H4iJPZbLaD0LsLxMB2xDCxDO9uexlnfMMDoryq1nFdrl/C6A==",
+    "NLog.Web.AspNetCore/4.9.3": {
+      "sha512": "v3TiGaFXENM3/fVCFJJaien7A44EcGwceySh5rFNkp5RC3PZvsbDjEXoOeqsDz8+i5iuYQDMjTFuD2JReNdj9g==",
       "type": "package",
-      "path": "nlog.web.aspnetcore/4.14.0",
+      "path": "nlog.web.aspnetcore/4.9.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "N.png",
         "lib/net451/NLog.Web.AspNetCore.dll",
         "lib/net451/NLog.Web.AspNetCore.xml",
         "lib/net461/NLog.Web.AspNetCore.dll",
@@ -4143,9 +4138,8 @@
         "lib/netstandard1.5/NLog.Web.AspNetCore.xml",
         "lib/netstandard2.0/NLog.Web.AspNetCore.dll",
         "lib/netstandard2.0/NLog.Web.AspNetCore.xml",
-        "nlog.web.aspnetcore.4.14.0.nupkg.sha512",
-        "nlog.web.aspnetcore.nuspec",
-        "readme.txt"
+        "nlog.web.aspnetcore.4.9.3.nupkg.sha512",
+        "nlog.web.aspnetcore.nuspec"
       ]
     },
     "runtime.native.System/4.3.0": {
@@ -8101,34 +8095,32 @@
       "Microsoft.EntityFrameworkCore.Tools >= 5.0.9",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 5.0.2",
       "NLog >= 4.7.*",
-      "NLog.Web.AspNetCore >= 4.14.0",
+      "NLog.Web.AspNetCore >= 4.9.*",
       "Newtonsoft.Json >= 13.0.1",
       "SQLite >= 3.13.0",
       "System.Data.SQLite >= 1.0.115"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Alumno\\.nuget\\packages\\": {},
+    "C:\\Users\\jivit\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
-    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Alumno\\Documents\\GitHub\\tpnro-6-JIVitian\\TL2-TP3\\TL2-TP3.csproj",
+      "projectUniqueName": "C:\\Users\\jivit\\Desktop\\Mis Cosas\\Facultad\\Licenciatura En Informatica\\2do Anio\\Taller de Lenguajes 2\\Practica\\TP3-Vitian\\TL2-TP3\\TL2-TP3\\TL2-TP3.csproj",
       "projectName": "TL2-TP3",
-      "projectPath": "C:\\Users\\Alumno\\Documents\\GitHub\\tpnro-6-JIVitian\\TL2-TP3\\TL2-TP3.csproj",
-      "packagesPath": "C:\\Users\\Alumno\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Alumno\\Documents\\GitHub\\tpnro-6-JIVitian\\TL2-TP3\\obj\\",
+      "projectPath": "C:\\Users\\jivit\\Desktop\\Mis Cosas\\Facultad\\Licenciatura En Informatica\\2do Anio\\Taller de Lenguajes 2\\Practica\\TP3-Vitian\\TL2-TP3\\TL2-TP3\\TL2-TP3.csproj",
+      "packagesPath": "C:\\Users\\jivit\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\jivit\\Desktop\\Mis Cosas\\Facultad\\Licenciatura En Informatica\\2do Anio\\Taller de Lenguajes 2\\Practica\\TP3-Vitian\\TL2-TP3\\TL2-TP3\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\Alumno\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\jivit\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
@@ -8188,7 +8180,7 @@
           },
           "NLog.Web.AspNetCore": {
             "target": "Package",
-            "version": "[4.14.0, )"
+            "version": "[4.9.*, )"
           },
           "Newtonsoft.Json": {
             "target": "Package",
@@ -8221,7 +8213,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
       }
     }
   }

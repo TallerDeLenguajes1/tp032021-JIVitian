@@ -67,17 +67,18 @@ namespace TL2_TP3.Controllers
         // GET: DeliveryBoyController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View(delivery.Delivery.DeliveryBoyList.Find(x => x.Id == id));
+            return View(RepoCadetes.GetById(id));
         }
 
         // POST: DeliveryBoyController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, /*IFormCollection collection*/ DeliveryBoy data)
         {
             try
             {
-                delivery.EditDeliveryBoy(id, collection);
+                RepoCadetes.Update(data);
+                //delivery.EditDeliveryBoy(id, data);
                 nlog.Info("Delivery Boy Updated.");
                 return RedirectToAction(nameof(Index));
             }
@@ -93,9 +94,8 @@ namespace TL2_TP3.Controllers
         {
             try
             {
-                delivery.DeleteDeliveryBoy(id);
+                RepoCadetes.Delete(id);
                 nlog.Info($"Delivery Boy {id} Deleted.");
-                //return View();
                 return RedirectToAction(nameof(Index));
             } catch (Exception e)
             {

@@ -17,6 +17,17 @@ namespace TL2_TP3.Models
             // conexion = new SqliteConnection(connectionString);
         }
 
+        private DeliveryBoy SetDeliveryBoy(SQLiteDataReader dataReader)
+        {
+            return new DeliveryBoy()
+            {
+                Id = Convert.ToInt32(dataReader["id"]),
+                Name = dataReader["name"].ToString(),
+                Phone = dataReader["phone"].ToString(),
+                Address = dataReader["address"].ToString()
+            };
+        }
+
         public List<DeliveryBoy> GetAll()
         {
             List<DeliveryBoy> ListadoCadete = new();
@@ -28,16 +39,7 @@ namespace TL2_TP3.Models
                 SQLiteCommand command = new SQLiteCommand(SQLQuery, conection);
                 SQLiteDataReader DataReader = command.ExecuteReader();
                 while (DataReader.Read())
-                {
-                    DeliveryBoy cadete = new()
-                    {
-                        Id = Convert.ToInt32(DataReader["id"]),
-                        Name = DataReader["name"].ToString(),
-                        Phone = DataReader["phone"].ToString(),
-                        Address = DataReader["address"].ToString()
-                    };
-                    ListadoCadete.Add(cadete);
-                }
+                    ListadoCadete.Add(SetDeliveryBoy(DataReader));
                 conection.Close();
             }
 
@@ -46,7 +48,7 @@ namespace TL2_TP3.Models
 
         public DeliveryBoy GetById(int id)
         {
-            var cadete = new DeliveryBoy();
+            var deliveryBoy = new DeliveryBoy();
 
             using (SQLiteConnection conexion = new SQLiteConnection(connectionString))
             {
@@ -59,16 +61,13 @@ namespace TL2_TP3.Models
                 var dataReader = command.ExecuteReader();
                 while (dataReader.Read())
                 {
-                    cadete.Id = Convert.ToInt32(dataReader["id"]);
-                    cadete.Name = dataReader["name"].ToString();
-                    cadete.Phone = dataReader["phone"].ToString();
-                    cadete.Address = dataReader["address"].ToString();
+                    deliveryBoy = SetDeliveryBoy(dataReader);
                 }
 
                 conexion.Close();
             }
 
-            return cadete;
+            return deliveryBoy;
         }   
 
         public void Insert(DeliveryBoy data)
@@ -138,6 +137,16 @@ namespace TL2_TP3.Models
                             DELETE FROM DeliveryBoys
                             WHERE id = @id
                         ";
+
+            using (var conexion = new SQLiteConnection(connectionString))
+            {
+                using (SQLiteCommand command = new SQLiteCommand(query, conexion))
+                {
+                    command.Parameters.AddWithValue("@id", id);
+                    command.ExecuteNonQuery();
+                }
+            }
+
         }
     }
 }
