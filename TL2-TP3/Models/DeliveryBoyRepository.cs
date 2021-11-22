@@ -82,15 +82,14 @@ namespace TL2_TP3.Models
                 {
                     using (SQLiteCommand command = new SQLiteCommand(query, conexion))
                     {
+                        conexion.Open();
                         command.Parameters.AddWithValue("@name", data.Name);
                         command.Parameters.AddWithValue("@phone", data.Phone);
                         command.Parameters.AddWithValue("@address", data.Address);
-                        conexion.Open();
                         command.ExecuteNonQuery();
                         conexion.Close();
                     }
                 }
-
             }
             catch (Exception ex)
             {
@@ -107,18 +106,18 @@ namespace TL2_TP3.Models
                                  SET name = @name,
                                      phone = @phone,
                                      address = @address
-                                 WHERE cadeteID = @id
+                                 WHERE id = @id
                                ";
 
                 using (var conexion = new SQLiteConnection(connectionString))
                 {
                     using (SQLiteCommand command = new SQLiteCommand(query, conexion))
                     {
+                        conexion.Open();
                         command.Parameters.AddWithValue("@name", data.Name);
                         command.Parameters.AddWithValue("@phone", data.Phone);
                         command.Parameters.AddWithValue("@address", data.Address);
                         command.Parameters.AddWithValue("@id", data.Id);
-                        conexion.Open();
                         command.ExecuteNonQuery();
                         conexion.Close();
                     }
@@ -142,11 +141,12 @@ namespace TL2_TP3.Models
             {
                 using (SQLiteCommand command = new SQLiteCommand(query, conexion))
                 {
+                    conexion.Open();
                     command.Parameters.AddWithValue("@id", id);
                     command.ExecuteNonQuery();
+                    conexion.Close();
                 }
             }
-
         }
     }
 }

@@ -47,11 +47,12 @@ namespace TL2_TP3.Controllers
         // POST: DeliveryBoyController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(DeliveryBoy deliveryBoy)
         {
             try
             {
-                delivery.AddDeliveryBoy(collection);
+                RepoCadetes.Insert(deliveryBoy);
+                //delivery.AddDeliveryBoy(collection);
 
                 nlog.Info("New Delivery Boy Created.");
 
@@ -73,12 +74,11 @@ namespace TL2_TP3.Controllers
         // POST: DeliveryBoyController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, /*IFormCollection collection*/ DeliveryBoy data)
+        public ActionResult Edit(/*IFormCollection collection*/ DeliveryBoy data)
         {
             try
             {
                 RepoCadetes.Update(data);
-                //delivery.EditDeliveryBoy(id, data);
                 nlog.Info("Delivery Boy Updated.");
                 return RedirectToAction(nameof(Index));
             }
