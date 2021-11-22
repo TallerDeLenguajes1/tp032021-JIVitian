@@ -4,19 +4,22 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Data.SQLite;
 using TL2_TP3.Repositories.Interfaces;
+using NLog;
 
 namespace TL2_TP3.Models
 {
     public class DeliveryBoyRepository : IRepository<DeliveryBoy>
     {
         private readonly string connectionString;
+        private readonly Logger logger;
         // private readonly SqliteConnection conexion;
-        public DeliveryBoyRepository(string connectionString)
+        public DeliveryBoyRepository(string connectionString, Logger nlog)
         {
             this.connectionString = connectionString;
             // conexion = new SqliteConnection(connectionString);
         }
 
+        // TODO: Hacer esta función un predicado para hacer lo que se quiera con los datos recopilados
         private DeliveryBoy SetDeliveryBoy(SQLiteDataReader dataReader)
         {
             return new DeliveryBoy()
@@ -32,6 +35,8 @@ namespace TL2_TP3.Models
         {
             List<DeliveryBoy> ListadoCadete = new();
 
+            try
+            {
             using (var conection = new SQLiteConnection(connectionString))
             {
                 conection.Open();
@@ -41,6 +46,12 @@ namespace TL2_TP3.Models
                 while (DataReader.Read())
                     ListadoCadete.Add(SetDeliveryBoy(DataReader));
                 conection.Close();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                logger.Error("Error Message: " + ex.Message);
             }
 
             return ListadoCadete;
@@ -50,21 +61,28 @@ namespace TL2_TP3.Models
         {
             var deliveryBoy = new DeliveryBoy();
 
-            using (SQLiteConnection conexion = new SQLiteConnection(connectionString))
+            try
             {
-                conexion.Open();
-
-                string query = "SELECT * FROM DeliveryBoys WHERE id=@id";
-                SQLiteCommand command = new SQLiteCommand(query, conexion);
-                command.Parameters.AddWithValue("@id", id);
-
-                var dataReader = command.ExecuteReader();
-                while (dataReader.Read())
+                using (SQLiteConnection conexion = new SQLiteConnection(connectionString))
                 {
-                    deliveryBoy = SetDeliveryBoy(dataReader);
-                }
+                    conexion.Open();
 
-                conexion.Close();
+                    string query = "SELECT * FROM DeliveryBoys WHERE id=@id";
+                    SQLiteCommand command = new SQLiteCommand(query, conexion);
+                    command.Parameters.AddWithValue("@id", id);
+
+                    var dataReader = command.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        deliveryBoy = SetDeliveryBoy(dataReader);
+                    }
+
+                    conexion.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error("Error Message: " + ex.Message);
             }
 
             return deliveryBoy;
@@ -93,7 +111,7 @@ namespace TL2_TP3.Models
             }
             catch (Exception ex)
             {
-                var mensaje = "Mensaje de error: " + ex.Message;
+                logger.Error("Error Message: " + ex.Message);
             }
         }
 
@@ -126,7 +144,7 @@ namespace TL2_TP3.Models
             }
             catch (Exception ex)
             {
-                var mensaje = "Mensaje de error: " + ex.Message;
+                logger.Error("Error Message: " + ex.Message);
             }
         }
 
@@ -136,7 +154,7 @@ namespace TL2_TP3.Models
                             DELETE FROM DeliveryBoys
                             WHERE id = @id
                         ";
-
+            
             using (var conexion = new SQLiteConnection(connectionString))
             {
                 using (SQLiteCommand command = new SQLiteCommand(query, conexion))
