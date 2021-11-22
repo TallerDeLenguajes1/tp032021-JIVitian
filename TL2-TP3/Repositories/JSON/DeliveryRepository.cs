@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using TL2_TP3.Models;
 using Newtonsoft.Json;
 
-namespace TL2_TP3.Repositories
+namespace TL2_TP3.Repositories.JSON
 {
     public class DeliveryRepository
     {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TL2_TP3.Models;
 
-namespace TL2_TP3.Repositories
+namespace TL2_TP3.Repositories.JSON
 {
     public class ClientRepository : RepositoryJSON<Client>
     {

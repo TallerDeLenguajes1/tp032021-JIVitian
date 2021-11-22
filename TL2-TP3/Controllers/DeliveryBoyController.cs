@@ -1,13 +1,12 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TL2_TP3.Models;
-using TL2_TP3.Repositories;
+using TL2_TP3.Repositories.SQLite;
 
 namespace TL2_TP3.Controllers
 {
@@ -15,13 +14,11 @@ namespace TL2_TP3.Controllers
     {
 
         private readonly Logger nlog;
-        private readonly DeliveryRepository delivery;
         private readonly DeliveryBoyRepository RepoCadetes;
 
-        public DeliveryBoyController(Logger nlog, DeliveryRepository delivery, DeliveryBoyRepository RepoCadetes)
+        public DeliveryBoyController(Logger nlog, DeliveryBoyRepository RepoCadetes)
         {
             this.nlog = nlog;
-            this.delivery = delivery;
             this.RepoCadetes = RepoCadetes;
         }
 
@@ -30,12 +27,6 @@ namespace TL2_TP3.Controllers
         {
             nlog.Info("Delivery Boy Index.");
             return View(RepoCadetes.GetAll());
-        }
-
-        // GET: DeliveryBoyController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
         }
 
         // GET: DeliveryBoyController/Create
@@ -52,10 +43,7 @@ namespace TL2_TP3.Controllers
             try
             {
                 RepoCadetes.Insert(deliveryBoy);
-                //delivery.AddDeliveryBoy(collection);
-
                 nlog.Info("New Delivery Boy Created.");
-
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception e)
@@ -74,7 +62,7 @@ namespace TL2_TP3.Controllers
         // POST: DeliveryBoyController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(/*IFormCollection collection*/ DeliveryBoy data)
+        public ActionResult Edit(DeliveryBoy data)
         {
             try
             {

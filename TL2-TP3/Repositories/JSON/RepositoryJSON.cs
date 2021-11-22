@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace TL2_TP3.Repositories
+namespace TL2_TP3.Repositories.JSON
 {
     public abstract class RepositoryJSON <T>
     {

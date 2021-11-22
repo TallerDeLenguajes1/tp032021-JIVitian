@@ -5,18 +5,18 @@ using System.Threading.Tasks;
 using System.Data.SQLite;
 using TL2_TP3.Repositories.Interfaces;
 using NLog;
+using TL2_TP3.Models;
 
-namespace TL2_TP3.Models
+namespace TL2_TP3.Repositories.SQLite
 {
     public class DeliveryBoyRepository : IRepository<DeliveryBoy>
     {
         private readonly string connectionString;
         private readonly Logger logger;
-        // private readonly SqliteConnection conexion;
-        public DeliveryBoyRepository(string connectionString, Logger nlog)
+        public DeliveryBoyRepository(string connectionString, Logger logger)
         {
             this.connectionString = connectionString;
-            // conexion = new SqliteConnection(connectionString);
+            this.logger = logger;
         }
 
         // TODO: Hacer esta función un predicado para hacer lo que se quiera con los datos recopilados
