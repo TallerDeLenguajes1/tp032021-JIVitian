@@ -154,16 +154,23 @@ namespace TL2_TP3.Models
                             DELETE FROM DeliveryBoys
                             WHERE id = @id
                         ";
-            
-            using (var conexion = new SQLiteConnection(connectionString))
+
+            try
             {
-                using (SQLiteCommand command = new SQLiteCommand(query, conexion))
+                using (var conexion = new SQLiteConnection(connectionString))
                 {
-                    conexion.Open();
-                    command.Parameters.AddWithValue("@id", id);
-                    command.ExecuteNonQuery();
-                    conexion.Close();
+                    using (SQLiteCommand command = new SQLiteCommand(query, conexion))
+                    {
+                        conexion.Open();
+                        command.Parameters.AddWithValue("@id", id);
+                        command.ExecuteNonQuery();
+                        conexion.Close();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                logger.Error("Error Message: " + ex.Message);
             }
         }
     }
