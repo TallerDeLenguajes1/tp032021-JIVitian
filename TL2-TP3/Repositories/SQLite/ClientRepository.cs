@@ -34,14 +34,31 @@ namespace TL2_TP3.Repositories.SQLite
                 Phone = dataReader["phone"].ToString()
             };
         }
-        public void Delete(int id)
-        {
-            throw new NotImplementedException();
-        }
 
         public List<Client> GetAll()
         {
-            throw new NotImplementedException();
+            List<Client> clientsList = new();
+
+            try
+            {
+                using (var conection = new SQLiteConnection(connectionString))
+                {
+                    conection.Open();
+                    string SQLQuery = "SELECT * FROM Clients WHERE active=1";
+                    SQLiteCommand command = new SQLiteCommand(SQLQuery, conection);
+                    SQLiteDataReader DataReader = command.ExecuteReader();
+                    while (DataReader.Read())
+                        clientsList.Add(SetClient(DataReader));
+                    conection.Close();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                logger.Error("Error Message: " + ex.Message);
+            }
+
+            return clientsList;
         }
 
         public Client GetById(int id)
@@ -55,6 +72,11 @@ namespace TL2_TP3.Repositories.SQLite
         }
 
         public void Update(Client data)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(int id)
         {
             throw new NotImplementedException();
         }

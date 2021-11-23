@@ -37,41 +37,41 @@ namespace TL2_TP3.Controllers
         }
 
         // POST: OrderController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                var order = new Order()
-                {
-                    Number = collection[],
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create(IFormCollection collection)
+        //{
+        //    try
+        //    {
+        //        var order = new Order()
+        //        {
+        //            Number = collection[],
                     
-                };
+        //        };
 
-                repository.orderRepo.Insert(order);
-                //delivery.AddOrder(int.Parse(collection['DeliveryBoy']), order);
-                //nlog.Info($"Order N°{orders.List.Last().Number} Created.");
-                return RedirectToAction(nameof(Index));
-            }
-            catch (Exception e)
-            {
-                nlog.Error($"Order couldn't be created. Message: {e.Message}");
-                return View();
-            }
-        }
+        //        repository.orderRepo.Insert(order);
+        //        //delivery.AddOrder(int.Parse(collection['DeliveryBoy']), order);
+        //        //nlog.Info($"Order N°{orders.List.Last().Number} Created.");
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        nlog.Error($"Order couldn't be created. Message: {e.Message}");
+        //        return View();
+        //    }
+        //}
 
         // GET: OrderController/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null || id == 0)
-                return NotFound();
+        //public ActionResult Edit(int? id)
+        //{
+        //    if (id == null || id == 0)
+        //        return NotFound();
 
-            //var order = orders.List.Find(x => x.Number == id);
+        //    //var order = orders.List.Find(x => x.Number == id);
 
-            return order != null ? View(order) : NotFound();
-            //return View(orders.List.Find(x => x.Number == id));
-        }
+        //    //return order != null ? View(order) : NotFound();
+        //    //return View(orders.List.Find(x => x.Number == id));
+        //}
 
         // POST: OrderController/Edit/5
         [HttpPost]
@@ -80,7 +80,7 @@ namespace TL2_TP3.Controllers
         {
             try
             {
-                orders.EditOrder(id, collection);
+                //orders.EditOrder(id, collection);
                 //orders.EditOrder(order);
                 //delivery.EditOrder(order);
                 nlog.Info($"Order N°{/*order.Number*/ id} Updated.");
@@ -98,8 +98,8 @@ namespace TL2_TP3.Controllers
         {
             try
             {
-                orders.DeleteOrder(id);
-                delivery.DeleteOrder(id);
+                //orders.DeleteOrder(id);
+                //delivery.DeleteOrder(id);
                 nlog.Info($"Order N°{id} Deleted.");
                 return RedirectToAction(nameof(Index));
             }

@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TL2_TP3.Models;
-using TL2_TP3.Repositories;
+using TL2_TP3.Repositories.JSON;
 
 namespace TL2_TP3.Controllers
 {

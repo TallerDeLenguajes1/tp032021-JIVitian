@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "bKwkxFxjxp5VSbdSWIlV58+EZYL4YHbDLgStkG9Tig4qXOoQD+iSqaDvE/jLNb6dK09CSR+1jYsCmNnimSigzg==",
+  "dgSpecHash": "znmD9FkPgra5cyYpMRMwoDa2Ez23uni7hku8eZwBHEoLtbzsAtitjidEmCyAEGZ5TcQGWcarGpoTeLkamXM//w==",
   "success": true,
   "projectFilePath": "C:\\Users\\jivit\\Desktop\\Mis Cosas\\Facultad\\Licenciatura En Informatica\\2do Anio\\Taller de Lenguajes 2\\Practica\\TP4-Vitian\\tp032021-JIVitian\\TL2-TP3\\TL2-TP3.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jivit\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
+    "C:\\Users\\jivit\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",
     "C:\\Users\\jivit\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\jivit\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\jivit\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",

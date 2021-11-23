@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace TL2_TP3.Repositories.Interfaces
 {
-    interface IRepository <T>
+    interface IRepository <T> where T : class
     {
         //public string DBName { get; set; }
         public List<T> GetAll();

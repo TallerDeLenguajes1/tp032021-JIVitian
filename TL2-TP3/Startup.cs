@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NLog;
+using NLog.Web;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,8 +33,9 @@ namespace TL2_TP3
     {
       var connectionString = Configuration.GetConnectionString("Default");
       services.AddControllersWithViews().AddRazorRuntimeCompilation();
-      services.AddSingleton(NLog.LogManager.GetCurrentClassLogger());
-      services.AddSingleton(new Repository(connectionString, NLog.LogManager.GetCurrentClassLogger()));
+      services.AddSingleton(new Repository(connectionString, NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger()));
+      services.AddAutoMapper(typeof(ProfileMapper));
+           
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
