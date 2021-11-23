@@ -40,7 +40,7 @@ namespace TL2_TP3.Repositories.SQLite
             using (var conection = new SQLiteConnection(connectionString))
             {
                 conection.Open();
-                string SQLQuery = "SELECT * FROM DeliveryBoys";
+                string SQLQuery = "SELECT * FROM DeliveryBoys WHERE active=1";
                 SQLiteCommand command = new SQLiteCommand(SQLQuery, conection);
                 SQLiteDataReader DataReader = command.ExecuteReader();
                 while (DataReader.Read())
@@ -67,7 +67,7 @@ namespace TL2_TP3.Repositories.SQLite
                 {
                     conexion.Open();
 
-                    string query = "SELECT * FROM DeliveryBoys WHERE id=@id";
+                    string query = "SELECT * FROM DeliveryBoys WHERE id=@id AND active=1";
                     SQLiteCommand command = new SQLiteCommand(query, conexion);
                     command.Parameters.AddWithValue("@id", id);
 
@@ -92,9 +92,11 @@ namespace TL2_TP3.Repositories.SQLite
         {
             try
             {
-                string query = @"INSERT INTO
+                string query = @"
+                                 INSERT INTO
                                  DeliveryBoys (name, phone, address)
-                                 VALUES (@name, @phone, @address)";
+                                 VALUES (@name, @phone, @address)
+                               ";
 
                 using (var conexion = new SQLiteConnection(connectionString))
                 {
@@ -151,9 +153,10 @@ namespace TL2_TP3.Repositories.SQLite
         public void Delete(int id)
         {
             string query = @"
-                            DELETE FROM DeliveryBoys
+                            UPDATE DeliveryBoys
+                            SET active = 0
                             WHERE id = @id
-                        ";
+                           ";
 
             try
             {

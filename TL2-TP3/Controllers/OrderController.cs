@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TL2_TP3.Models;
-using TL2_TP3.Repositories;
+using TL2_TP3.Repositories.SQLite;
 
 namespace TL2_TP3.Controllers
 {
@@ -14,45 +14,44 @@ namespace TL2_TP3.Controllers
     {
         private readonly Logger nlog;
         private readonly OrderRepository orders;
-        private readonly DeliveryRepository delivery;
+        private readonly Repository repository;
 
-        public OrderController(Logger nlog, OrderRepository orders, DeliveryRepository delivery)
+        public OrderController(Logger nlog, OrderRepository orders, Repository repository)
         {
             this.nlog = nlog;
             this.orders = orders;
-            this.delivery = delivery;
+            this.repository = repository;
         }
 
         // GET: OrderController
         public ActionResult Index()
         {
             nlog.Info("Order Index.");
-            return View(orders.List);
-        }
-
-        // GET: OrderController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
+            return View(repository.orderRepo.GetAll());
         }
 
         // GET: OrderController/Create
         public ActionResult Create()
         {
-            return View(orders.delivery.Delivery.DeliveryBoyList);
+            return View();
         }
 
         // POST: OrderController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(/*Order order, */IFormCollection collection)
+        public ActionResult Create(IFormCollection collection)
         {
             try
             {
-                //orders.AddOrder(order);
-                orders.AddOrder(collection);
+                var order = new Order()
+                {
+                    Number = collection[],
+                    
+                };
+
+                repository.orderRepo.Insert(order);
                 //delivery.AddOrder(int.Parse(collection['DeliveryBoy']), order);
-                nlog.Info($"Order N°{orders.List.Last().Number} Created.");
+                //nlog.Info($"Order N°{orders.List.Last().Number} Created.");
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception e)
@@ -68,7 +67,7 @@ namespace TL2_TP3.Controllers
             if (id == null || id == 0)
                 return NotFound();
 
-            var order = orders.List.Find(x => x.Number == id);
+            //var order = orders.List.Find(x => x.Number == id);
 
             return order != null ? View(order) : NotFound();
             //return View(orders.List.Find(x => x.Number == id));

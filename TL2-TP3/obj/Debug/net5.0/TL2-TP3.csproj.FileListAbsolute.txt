@@ -968,3 +968,15 @@ C:\Users\Alumno\Documents\GitHub\tpnro-6-JIVitian\TL2-TP3\obj\Debug\net5.0\TL2-T
 C:\Users\Alumno\Documents\GitHub\tpnro-6-JIVitian\TL2-TP3\obj\Debug\net5.0\TL2-TP3.Views.pdb
 C:\Users\Alumno\Documents\GitHub\tpnro-6-JIVitian\TL2-TP3\obj\Debug\net5.0\TL2-TP3.csproj.CopyComplete
 C:\Users\Alumno\Documents\GitHub\tpnro-6-JIVitian\TL2-TP3\obj\Debug\net5.0\TL2-TP3.genruntimeconfig.cache
+C:\Users\jivit\Desktop\Mis Cosas\Facultad\Licenciatura En Informatica\2do Anio\Taller de Lenguajes 2\Practica\TP4-Vitian\tp032021-JIVitian\TL2-TP3\obj\Debug\net5.0\TL2-TP3.csproj.AssemblyReference.cache
+C:\Users\jivit\Desktop\Mis Cosas\Facultad\Licenciatura En Informatica\2do Anio\Taller de Lenguajes 2\Practica\TP4-Vitian\tp032021-JIVitian\TL2-TP3\obj\Debug\net5.0\TL2-TP3.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jivit\Desktop\Mis Cosas\Facultad\Licenciatura En Informatica\2do Anio\Taller de Lenguajes 2\Practica\TP4-Vitian\tp032021-JIVitian\TL2-TP3\obj\Debug\net5.0\TL2-TP3.AssemblyInfoInputs.cache
+C:\Users\jivit\Desktop\Mis Cosas\Facultad\Licenciatura En Informatica\2do Anio\Taller de Lenguajes 2\Practica\TP4-Vitian\tp032021-JIVitian\TL2-TP3\obj\Debug\net5.0\TL2-TP3.AssemblyInfo.cs
+C:\Users\jivit\Desktop\Mis Cosas\Facultad\Licenciatura En Informatica\2do Anio\Taller de Lenguajes 2\Practica\TP4-Vitian\tp032021-JIVitian\TL2-TP3\obj\Debug\net5.0\TL2-TP3.csproj.CoreCompileInputs.cache
+C:\Users\jivit\Desktop\Mis Cosas\Facultad\Licenciatura En Informatica\2do Anio\Taller de Lenguajes 2\Practica\TP4-Vitian\tp032021-JIVitian\TL2-TP3\obj\Debug\net5.0\TL2-TP3.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\jivit\Desktop\Mis Cosas\Facultad\Licenciatura En Informatica\2do Anio\Taller de Lenguajes 2\Practica\TP4-Vitian\tp032021-JIVitian\TL2-TP3\obj\Debug\net5.0\TL2-TP3.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\jivit\Desktop\Mis Cosas\Facultad\Licenciatura En Informatica\2do Anio\Taller de Lenguajes 2\Practica\TP4-Vitian\tp032021-JIVitian\TL2-TP3\obj\Debug\net5.0\TL2-TP3.RazorAssemblyInfo.cache
+C:\Users\jivit\Desktop\Mis Cosas\Facultad\Licenciatura En Informatica\2do Anio\Taller de Lenguajes 2\Practica\TP4-Vitian\tp032021-JIVitian\TL2-TP3\obj\Debug\net5.0\TL2-TP3.RazorAssemblyInfo.cs
+C:\Users\jivit\Desktop\Mis Cosas\Facultad\Licenciatura En Informatica\2do Anio\Taller de Lenguajes 2\Practica\TP4-Vitian\tp032021-JIVitian\TL2-TP3\obj\Debug\net5.0\TL2-TP3.dll
+C:\Users\jivit\Desktop\Mis Cosas\Facultad\Licenciatura En Informatica\2do Anio\Taller de Lenguajes 2\Practica\TP4-Vitian\tp032021-JIVitian\TL2-TP3\obj\Debug\net5.0\ref\TL2-TP3.dll
+C:\Users\jivit\Desktop\Mis Cosas\Facultad\Licenciatura En Informatica\2do Anio\Taller de Lenguajes 2\Practica\TP4-Vitian\tp032021-JIVitian\TL2-TP3\obj\Debug\net5.0\TL2-TP3.pdb

@@ -13,7 +13,7 @@ namespace TL2_TP3.Repositories.SQLite
     {
         private readonly string connectionString;
         private readonly Logger logger;
-        // private readonly SqliteConnection conexion;
+
         public OrderRepository(string connectionString, Logger logger)
         {
             this.connectionString = connectionString;
@@ -27,23 +27,94 @@ namespace TL2_TP3.Repositories.SQLite
             {
                 Number = Convert.ToInt32(dataReader["id"]),
                 Observation = dataReader["observation"].ToString(),
-                State = Enum.TryParse(dataReader["state"].ToString(), out State state) ? state : State.ToConfirm,
+                State = Enum.TryParse(dataReader["state"].ToString(), out State state) 
+                        ? state 
+                        : State.ToConfirm,
             };
         }
 
         public List<Order> GetAll()
         {
-            throw new NotImplementedException();
+            List<Order> ordersList = new();
+
+            try
+            {
+                using (var conection = new SQLiteConnection(connectionString))
+                {
+                    conection.Open();
+                    string SQLQuery = "SELECT * FROM Orders";
+                    SQLiteCommand command = new SQLiteCommand(SQLQuery, conection);
+                    SQLiteDataReader DataReader = command.ExecuteReader();
+                    while (DataReader.Read())
+                        ordersList.Add(SetOrder(DataReader));
+                    conection.Close();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                logger.Error("Error Message: " + ex.Message);
+            }
+
+            return ordersList;
         }
 
         public Order GetById(int id)
         {
-            throw new NotImplementedException();
+            var order = new Order();
+
+            try
+            {
+                using (SQLiteConnection conexion = new SQLiteConnection(connectionString))
+                {
+                    conexion.Open();
+
+                    string query = "SELECT * FROM Orders WHERE id=@id";
+                    SQLiteCommand command = new SQLiteCommand(query, conexion);
+                    command.Parameters.AddWithValue("@id", id);
+
+                    var dataReader = command.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        order = SetOrder(dataReader);
+                    }
+
+                    conexion.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error("Error Message: " + ex.Message);
+            }
+
+            return order;
         }
 
         public void Insert(Order data)
         {
-            throw new NotImplementedException();
+            try
+            {
+                string query = @"INSERT INTO
+                                 Orders (observations, state, clientId, deliberyBoyId)
+                                 VALUES (@id, @phone, @address)";
+
+                using (var conexion = new SQLiteConnection(connectionString))
+                {
+                    using (SQLiteCommand command = new SQLiteCommand(query, conexion))
+                    {
+                        conexion.Open();
+                        command.Parameters.AddWithValue("@name", data.Observation);
+                        command.Parameters.AddWithValue("@phone", data.State);
+                        command.Parameters.AddWithValue("@address", data.Client.Id);
+                        command.ExecuteNonQuery();
+                        conexion.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error("Error Message: " + ex.Message);
+            }
         }
 
         public void Update(Order data)

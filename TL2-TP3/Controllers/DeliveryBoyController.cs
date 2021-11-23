@@ -4,7 +4,6 @@ using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using TL2_TP3.Models;
 using TL2_TP3.Repositories.SQLite;
 
@@ -14,19 +13,19 @@ namespace TL2_TP3.Controllers
     {
 
         private readonly Logger nlog;
-        private readonly DeliveryBoyRepository RepoCadetes;
+        private readonly Repository repository;
 
-        public DeliveryBoyController(Logger nlog, DeliveryBoyRepository RepoCadetes)
+        public DeliveryBoyController(Logger nlog, Repository repository)
         {
             this.nlog = nlog;
-            this.RepoCadetes = RepoCadetes;
+            this.repository = repository;
         }
 
         // GET: DeliveryBoyController
         public ActionResult Index()
         {
             nlog.Info("Delivery Boy Index.");
-            return View(RepoCadetes.GetAll());
+            return View(repository.DBRepo.GetAll());
         }
 
         // GET: DeliveryBoyController/Create
@@ -42,7 +41,7 @@ namespace TL2_TP3.Controllers
         {
             try
             {
-                RepoCadetes.Insert(deliveryBoy);
+                repository.DBRepo.Insert(deliveryBoy);
                 nlog.Info("New Delivery Boy Created.");
                 return RedirectToAction(nameof(Index));
             }
@@ -56,7 +55,7 @@ namespace TL2_TP3.Controllers
         // GET: DeliveryBoyController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View(RepoCadetes.GetById(id));
+            return View(repository.DBRepo.GetById(id));
         }
 
         // POST: DeliveryBoyController/Edit/5
@@ -66,7 +65,7 @@ namespace TL2_TP3.Controllers
         {
             try
             {
-                RepoCadetes.Update(data);
+                repository.DBRepo.Update(data);
                 nlog.Info("Delivery Boy Updated.");
                 return RedirectToAction(nameof(Index));
             }
@@ -82,7 +81,7 @@ namespace TL2_TP3.Controllers
         {
             try
             {
-                RepoCadetes.Delete(id);
+                repository.DBRepo.Delete(id);
                 nlog.Info($"Delivery Boy {id} Deleted.");
                 return RedirectToAction(nameof(Index));
             } catch (Exception e)

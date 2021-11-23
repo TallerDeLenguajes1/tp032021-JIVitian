@@ -4,20 +4,21 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TL2_TP3.Models;
-using TL2_TP3.Repositories;
+using TL2_TP3.Repositories.SQLite;
 
 namespace TL2_TP3
 {
   public class Startup
   {
-    static DeliveryRepository delivery = new DeliveryRepository();
-    static OrderRepository orders = new OrderRepository(delivery);
-    static ClientRepository clientes = new ClientRepository();
+    //static DeliveryRepository delivery = new DeliveryRepository();
+    //static OrderRepository orders = new OrderRepository();
+    //static ClientRepository clientes = new ClientRepository();
 
     public Startup(IConfiguration configuration)
     {
@@ -30,13 +31,9 @@ namespace TL2_TP3
     public void ConfigureServices(IServiceCollection services)
     {
       var connectionString = Configuration.GetConnectionString("Default");
-      DeliveryBoyRepository RepoCadetes = new(connectionString);
-      services.AddSingleton(RepoCadetes);
       services.AddControllersWithViews().AddRazorRuntimeCompilation();
       services.AddSingleton(NLog.LogManager.GetCurrentClassLogger());
-      services.AddSingleton(delivery);
-      services.AddSingleton(orders);
-      services.AddSingleton(clientes);
+      services.AddSingleton(new Repository(connectionString, NLog.LogManager.GetCurrentClassLogger()));
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
