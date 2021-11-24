@@ -31,9 +31,11 @@ namespace TL2_TP3
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
+      var nlog = NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
       var connectionString = Configuration.GetConnectionString("Default");
       services.AddControllersWithViews().AddRazorRuntimeCompilation();
-      services.AddSingleton(new Repository(connectionString, NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger()));
+      services.AddSingleton(nlog);
+      services.AddSingleton(new Repository(connectionString, nlog));
       services.AddAutoMapper(typeof(ProfileMapper));
            
     }
