@@ -51,7 +51,7 @@ namespace TL2_TP3.Repositories.SQLite
             }
             catch (Exception ex)
             {
-                logger.Error("Error Message: " + ex.Message);
+                logger.Error($"Error Message: {ex.Message}. Stack Trace: {ex.StackTrace}");
             }
 
             return ListadoCadete;
@@ -82,7 +82,7 @@ namespace TL2_TP3.Repositories.SQLite
             }
             catch (Exception ex)
             {
-                logger.Error("Error Message: " + ex.Message);
+                logger.Error($"Error Message: {ex.Message}. Stack Trace: {ex.StackTrace}");
             }
 
             return deliveryBoy;
@@ -146,7 +146,7 @@ namespace TL2_TP3.Repositories.SQLite
             }
             catch (Exception ex)
             {
-                logger.Error("Error Message: " + ex.Message);
+                logger.Error($"Error Message: {ex.Message}. Stack Trace: {ex.StackTrace}");
             }
         }
 
@@ -173,7 +173,7 @@ namespace TL2_TP3.Repositories.SQLite
             }
             catch (Exception ex)
             {
-                logger.Error("Error Message: " + ex.Message);
+                logger.Error($"Error Message: {ex.Message}. Stack Trace: {ex.StackTrace}");
             }
         }
     }

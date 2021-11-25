@@ -14,7 +14,6 @@ namespace TL2_TP3.Repositories.SQLite
     {
         private readonly string connectionString;
         private readonly Logger logger;
-        private readonly IMapper mapper;
 
         public ClientRepository(string connectionString, Logger logger)
         {
@@ -55,7 +54,7 @@ namespace TL2_TP3.Repositories.SQLite
             }
             catch (Exception ex)
             {
-                logger.Error("Error Message: " + ex.Message);
+                logger.Error($"Error Message: {ex.Message}. Stack Trace: {ex.StackTrace}");
             }
 
             return clientsList;
@@ -63,22 +62,122 @@ namespace TL2_TP3.Repositories.SQLite
 
         public Client GetById(int id)
         {
-            throw new NotImplementedException();
+            Client client = new();
+
+            try
+            {
+                using (SQLiteConnection conexion = new SQLiteConnection(connectionString))
+                {
+                    conexion.Open();
+
+                    string query = "SELECT * FROM Clients WHERE id=@id AND active=1";
+                    SQLiteCommand command = new SQLiteCommand(query, conexion);
+                    command.Parameters.AddWithValue("@id", id);
+
+                    var dataReader = command.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        client = SetClient(dataReader);
+                    }
+
+                    conexion.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error($"Error Message: {ex.Message}. Stack Trace: {ex.StackTrace}");
+            }
+
+            return client;
         }
 
         public void Insert(Client data)
         {
-            throw new NotImplementedException();
+            try
+            {
+                string query = @"
+                                 INSERT INTO
+                                 Clients (name, phone, address)
+                                 VALUES (@name, @phone, @address)
+                               ";
+
+                using (var conexion = new SQLiteConnection(connectionString))
+                {
+                    using (SQLiteCommand command = new SQLiteCommand(query, conexion))
+                    {
+                        conexion.Open();
+                        command.Parameters.AddWithValue("@name", data.Name);
+                        command.Parameters.AddWithValue("@phone", data.Phone);
+                        command.Parameters.AddWithValue("@address", data.Address);
+                        command.ExecuteNonQuery();
+                        conexion.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error($"Error Message: {ex.Message}. Stack Trace: {ex.StackTrace}");
+            }
         }
 
         public void Update(Client data)
         {
-            throw new NotImplementedException();
+            try
+            {
+                string query = @"
+                                 UPDATE Clients
+                                 SET name = @name,
+                                     phone = @phone,
+                                     address = @address
+                                 WHERE id = @id
+                               ";
+
+                using (var conexion = new SQLiteConnection(connectionString))
+                {
+                    using (SQLiteCommand command = new SQLiteCommand(query, conexion))
+                    {
+                        conexion.Open();
+                        command.Parameters.AddWithValue("@name", data.Name);
+                        command.Parameters.AddWithValue("@phone", data.Phone);
+                        command.Parameters.AddWithValue("@address", data.Address);
+                        command.Parameters.AddWithValue("@id", data.Id);
+                        command.ExecuteNonQuery();
+                        conexion.Close();
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                logger.Error($"Error Message: {ex.Message}. Stack Trace: {ex.StackTrace}");
+            }
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            string query = @"
+                            UPDATE Clients
+                            SET active = 0
+                            WHERE id = @id
+                           ";
+
+            try
+            {
+                using (var conexion = new SQLiteConnection(connectionString))
+                {
+                    using (SQLiteCommand command = new SQLiteCommand(query, conexion))
+                    {
+                        conexion.Open();
+                        command.Parameters.AddWithValue("@id", id);
+                        command.ExecuteNonQuery();
+                        conexion.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error($"Error Message: {ex.Message}. Stack Trace: {ex.StackTrace}");
+            }
         }
     }
 }
