@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using NLog;
+﻿using NLog;
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
@@ -28,7 +27,7 @@ namespace TL2_TP3.Repositories.SQLite
             return new Client()
             {
                 Id = Convert.ToInt32(dataReader["id"]),
-                Name = dataReader["observation"].ToString(),
+                Name = dataReader["name"].ToString(),
                 Address = dataReader["address"].ToString(),
                 Phone = dataReader["phone"].ToString()
             };

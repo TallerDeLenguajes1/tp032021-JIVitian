@@ -7,32 +7,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TL2_TP3.Models;
-using TL2_TP3.Repositories.JSON;
+using TL2_TP3.Repositories.SQLite;
 
 namespace TL2_TP3.Controllers
 {
     public class ClientController : Controller
     {
         private readonly Logger nlog;
-        private readonly ClientRepository clients;
+        private readonly Repository repository;
 
-        public ClientController(Logger nlog, ClientRepository clients)
+        public ClientController(Logger nlog, Repository repository)
         {
             this.nlog = nlog;
-            this.clients = clients;
+            this.repository = repository;
         }
 
         // GET: ClientController
         public ActionResult Index()
         {
             nlog.Info("Client Index.");
-            return View(clients.List);
-        }
-
-        // GET: ClientController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
+            return View(repository.clientRepo.GetAll());
         }
 
         // GET: ClientController/Create
@@ -50,7 +44,7 @@ namespace TL2_TP3.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    clients.AddClient(client);
+                    repository.clientRepo.Insert(client);
                     nlog.Info($"Order N°{client.Id} Created.");
                 }
                 return RedirectToAction(nameof(Index));
@@ -68,7 +62,7 @@ namespace TL2_TP3.Controllers
             if (id == null || id == 0)
                 return NotFound();
 
-            var client = clients.List.Find(x => x.Id == id);
+            var client = repository.clientRepo.GetById((int)id);
 
             return client != null ? View(client) : NotFound();
         }
@@ -81,14 +75,14 @@ namespace TL2_TP3.Controllers
             //try
             if (ModelState.IsValid)
             {
-                clients.EditClient(client);
+                repository.clientRepo.Update(client);
                 nlog.Info($"Client N°{client.Id} Updated.");
                 return RedirectToAction(nameof(Index));
             }
             //catch (Exception e)
             else
             {
-                nlog.Error($"Client N°{client.Id} couldn't be Updated."/*Message: { e.Message}*/);
+                nlog.Error($"Client N°{client.Id} couldn't be Updated.");
                 return View();
             }
         }
@@ -98,7 +92,7 @@ namespace TL2_TP3.Controllers
         {
             try
             {
-                clients.DeleteClient(id);
+                repository.clientRepo.Delete(id);
                 nlog.Info($"Client N°{id} Deleted.");
                 return RedirectToAction(nameof(Index));
             } catch (Exception e)
