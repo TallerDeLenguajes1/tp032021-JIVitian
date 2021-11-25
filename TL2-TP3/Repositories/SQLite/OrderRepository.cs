@@ -25,11 +25,18 @@ namespace TL2_TP3.Repositories.SQLite
         {
             return new Order()
             {
-                Number = Convert.ToInt32(dataReader["id"]),
-                Observation = dataReader["observation"].ToString(),
-                State = Enum.TryParse(dataReader["state"].ToString(), out State state) 
-                        ? state 
+                Number = Convert.ToInt32(dataReader["o.id"]),
+                Observation = dataReader["o.observation"].ToString(),
+                State = Enum.TryParse(dataReader["o.state"].ToString(), out State state)
+                        ? state
                         : State.ToConfirm,
+                Client = new Client()
+                {
+                    Id = Convert.ToInt32(dataReader["c.id"]),
+                    Name = dataReader["c.name"].ToString(),
+                    Address = dataReader["c.address"].ToString(),
+                    Phone = dataReader["c.phone"].ToString()
+                }
             };
         }
 
@@ -42,7 +49,12 @@ namespace TL2_TP3.Repositories.SQLite
                 using (var conection = new SQLiteConnection(connectionString))
                 {
                     conection.Open();
-                    string SQLQuery = "SELECT * FROM Orders";
+                    string SQLQuery = @"
+                                        SELECT * 
+                                        FROM Orders o INNER JOIN Clients c
+                                        ON Orders.clientId = Clients.id
+                                        WHERE o.active=1 AND c.active=1
+                                      ";
                     SQLiteCommand command = new SQLiteCommand(SQLQuery, conection);
                     SQLiteDataReader DataReader = command.ExecuteReader();
                     while (DataReader.Read())
@@ -94,18 +106,20 @@ namespace TL2_TP3.Repositories.SQLite
         {
             try
             {
-                string query = @"INSERT INTO
-                                 Orders (observations, state, clientId, deliberyBoyId)
-                                 VALUES (@id, @phone, @address)";
+                string query = @"
+                               INSERT INTO
+                               Orders (observations, state, clientId)
+                               VALUES (@observation, @state, @clientId)
+                               ";
 
                 using (var conexion = new SQLiteConnection(connectionString))
                 {
                     using (SQLiteCommand command = new SQLiteCommand(query, conexion))
                     {
                         conexion.Open();
-                        command.Parameters.AddWithValue("@name", data.Observation);
-                        command.Parameters.AddWithValue("@phone", data.State);
-                        command.Parameters.AddWithValue("@address", data.Client.Id);
+                        command.Parameters.AddWithValue("@observation", data.Observation);
+                        command.Parameters.AddWithValue("@state", data.State);
+                        command.Parameters.AddWithValue("@clientId", data.Client.Id);
                         command.ExecuteNonQuery();
                         conexion.Close();
                     }
@@ -119,12 +133,62 @@ namespace TL2_TP3.Repositories.SQLite
 
         public void Update(Order data)
         {
-            throw new NotImplementedException();
+            try
+            {
+                string query = @"
+                                 UPDATE Orders
+                                 SET observation = @observation,
+                                     state = @state,
+                                     clientId = @clientId
+                                 WHERE id = @id
+                               ";
+
+                using (var conexion = new SQLiteConnection(connectionString))
+                {
+                    using (SQLiteCommand command = new SQLiteCommand(query, conexion))
+                    {
+                        conexion.Open();
+                        command.Parameters.AddWithValue("@observation", data.Observation);
+                        command.Parameters.AddWithValue("@state", data.State);
+                        command.Parameters.AddWithValue("@clientId", data.Client.Id);
+                        command.Parameters.AddWithValue("@id", data.Number);
+                        command.ExecuteNonQuery();
+                        conexion.Close();
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                logger.Error($"Error Message: {ex.Message}. Stack Trace: {ex.StackTrace}");
+            }
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            string query = @"
+                            UPDATE Orders
+                            SET active = 0
+                            WHERE id = @id
+                           ";
+
+            try
+            {
+                using (var conexion = new SQLiteConnection(connectionString))
+                {
+                    using (SQLiteCommand command = new SQLiteCommand(query, conexion))
+                    {
+                        conexion.Open();
+                        command.Parameters.AddWithValue("@id", id);
+                        command.ExecuteNonQuery();
+                        conexion.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error($"Error Message: {ex.Message}. Stack Trace: {ex.StackTrace}");
+            }
         }
     }
 }
