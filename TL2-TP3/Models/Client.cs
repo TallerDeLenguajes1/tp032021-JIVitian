@@ -15,6 +15,7 @@ namespace TL2_TP3.Models
         [Required(ErrorMessage = "The {0} is required")]
         public string Address { get; set; }
         [Required(ErrorMessage = "The {0} is required")]
+        [Phone]
         public string Phone { get; set; }
     }
 }
