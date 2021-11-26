@@ -1,0 +1,30 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Create DeliveryBoy";
+}
+<main class="form-signin">
+    <form class="container w-50">
+        <img class="mb-4" src="../wwwroot/img/logo.png" alt="logo" width="72" height="57">
+        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+        <div class="form-floating p-2">
+            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">Email address</label>
+        </div>
+        <div class="form-floating p-2">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">Password</label>
+        </div>
+
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" value="remember-me"> Remember me
+            </label>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary m-2" type="submit">Sign in</button>
+        <a class="w-100 btn btn-lg btn-primary m-2" asp-controller="User" asp-action="SignUp">Sign up</a>
+        <p class="mt-5 mb-3 text-muted">© 2017–2021</p>
+    </form>
+</main>

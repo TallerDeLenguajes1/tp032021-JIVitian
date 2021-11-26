@@ -27,7 +27,7 @@ namespace TL2_TP3.Controllers
         }
 
         // GET: User/Create
-        public ActionResult Create()
+        public ActionResult SignUp()
         {
             return View();
         }
@@ -35,7 +35,7 @@ namespace TL2_TP3.Controllers
         // POST: User/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult SignUp(IFormCollection collection)
         {
             try
             {
@@ -48,7 +48,7 @@ namespace TL2_TP3.Controllers
         }
 
         // GET: User/Login
-        public ActionResult Login()
+        public ActionResult SignIn()
         {
             return View();
         }
@@ -56,7 +56,7 @@ namespace TL2_TP3.Controllers
         // POST: User/Login
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(string user, string password)
+        public ActionResult SignIn(string user, string password)
         {
             try
             {

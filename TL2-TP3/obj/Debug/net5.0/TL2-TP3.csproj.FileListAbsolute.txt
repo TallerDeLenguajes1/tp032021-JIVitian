@@ -1455,3 +1455,5 @@ C:\Users\jivit\Desktop\Mis Cosas\Facultad\Licenciatura En Informatica\2do Anio\T
 C:\Users\jivit\Desktop\Mis Cosas\Facultad\Licenciatura En Informatica\2do Anio\Taller de Lenguajes 2\Practica\TP4-Vitian\tp032021-JIVitian\TL2-TP3\obj\Debug\net5.0\TL2-TP3.csproj.CopyComplete
 C:\Users\jivit\Desktop\Mis Cosas\Facultad\Licenciatura En Informatica\2do Anio\Taller de Lenguajes 2\Practica\TP4-Vitian\tp032021-JIVitian\TL2-TP3\obj\Debug\net5.0\TL2-TP3.genruntimeconfig.cache
 C:\Users\jivit\Desktop\Mis Cosas\Facultad\Licenciatura En Informatica\2do Anio\Taller de Lenguajes 2\Practica\TP4-Vitian\tp032021-JIVitian\TL2-TP3\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\jivit\Desktop\Mis Cosas\Facultad\Licenciatura En Informatica\2do Anio\Taller de Lenguajes 2\Practica\TP4-Vitian\tp032021-JIVitian\TL2-TP3\obj\Debug\net5.0\Razor\Views\User\SignIn.cshtml.g.cs
+C:\Users\jivit\Desktop\Mis Cosas\Facultad\Licenciatura En Informatica\2do Anio\Taller de Lenguajes 2\Practica\TP4-Vitian\tp032021-JIVitian\TL2-TP3\obj\Debug\net5.0\Razor\Views\User\SignUp.cshtml.g.cs
