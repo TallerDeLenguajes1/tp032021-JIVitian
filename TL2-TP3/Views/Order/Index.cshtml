@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Orders";
 }
-@model List<TL2_TP3.Models.Order>
+@model TL2_TP3.Models.ViewModels.IndexOrderViewModel
 
     <div class="ml-auto d-flex justify-content-between">
         <h1 class="text-center">Order's List</h1>
@@ -20,7 +20,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model)
+            @foreach (var item in Model.Orders)
             {
                 <tr>
                     <td>

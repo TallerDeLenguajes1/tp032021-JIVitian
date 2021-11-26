@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NLog;
 using System;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TL2_TP3.Models;
+using TL2_TP3.Models.ViewModels;
 using TL2_TP3.Repositories.SQLite;
 
 namespace TL2_TP3.Controllers
@@ -13,82 +15,87 @@ namespace TL2_TP3.Controllers
     public class OrderController : Controller
     {
         private readonly Logger nlog;
-        private readonly OrderRepository orders;
         private readonly Repository repository;
+        private readonly IMapper mapper;
 
-        public OrderController(Logger nlog, OrderRepository orders, Repository repository)
+        public OrderController(Logger nlog, Repository repository, IMapper mapper)
         {
             this.nlog = nlog;
-            this.orders = orders;
             this.repository = repository;
+            this.mapper = mapper;
         }
 
         // GET: OrderController
         public ActionResult Index()
         {
-            nlog.Info("Order Index.");
-            return View(repository.orderRepo.GetAll());
+            IndexOrderViewModel orders = new(repository.orderRepo.GetAll());
+            return View(orders);
         }
 
         // GET: OrderController/Create
         public ActionResult Create()
         {
-            return View();
+            return View(new CreateOrderViewModel()
+            {
+                deliveyBoyList = repository.DBRepo.GetAll(),
+                clientList = repository.clientRepo.GetAll()
+            });
         }
 
         // POST: OrderController/Create
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create(IFormCollection collection)
-        //{
-        //    try
-        //    {
-        //        var order = new Order()
-        //        {
-        //            Number = collection[],
-                    
-        //        };
-
-        //        repository.orderRepo.Insert(order);
-        //        //delivery.AddOrder(int.Parse(collection['DeliveryBoy']), order);
-        //        //nlog.Info($"Order N°{orders.List.Last().Number} Created.");
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        nlog.Error($"Order couldn't be created. Message: {e.Message}");
-        //        return View();
-        //    }
-        //}
-
-        // GET: OrderController/Edit/5
-        //public ActionResult Edit(int? id)
-        //{
-        //    if (id == null || id == 0)
-        //        return NotFound();
-
-        //    //var order = orders.List.Find(x => x.Number == id);
-
-        //    //return order != null ? View(order) : NotFound();
-        //    //return View(orders.List.Find(x => x.Number == id));
-        //}
-
-        // POST: OrderController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection /*Order order*/)
+        public ActionResult Create(IFormCollection collection)
         {
             try
             {
-                //orders.EditOrder(id, collection);
-                //orders.EditOrder(order);
-                //delivery.EditOrder(order);
-                nlog.Info($"Order N°{/*order.Number*/ id} Updated.");
+                int index = repository.orderRepo.getLastIndex() + 1;
+
+                var order = new Order()
+                {
+                    Number = index > 0 ? index : 1,
+                    Observation = collection["observation"].ToString(),
+                    State = State.ToConfirm
+                };
+
+                repository.orderRepo.Insert(order);
+                repository.orderRepo.SetClient(int.Parse(collection["client"]), order.Number);
+                repository.orderRepo.SetDeliveryBoy(int.Parse(collection["DeliveryBoy"]), order.Number);
+                nlog.Info($"Order N°{order.Number} Created.");
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception e)
             {
-                nlog.Error($"Order N°{/*order.Number*/ id} couldn't be Updated.  Message: {e.Message}");
+                nlog.Error($"Order couldn't be created. Message: {e.Message}");
+                return View();
+            }
+        }
+
+        // GET: OrderController/Edit/5
+        public ActionResult Edit(int? id)
+        {
+            if (id == null || id == 0)
+                return NotFound();
+
+            var order = mapper.Map<EditOrderViewModel>(repository.orderRepo.GetById((int)id));
+
+            return order != null ? View(order) : NotFound();
+        }
+
+        // POST: OrderController/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(EditOrderViewModel order)
+        {
+            try
+            {
+                repository.orderRepo.Update(mapper.Map<Order>(order));
+                nlog.Info($"Order N°{order.Number} Updated.");
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception e)
+            {
+                nlog.Error($"Order N°{order.Number} couldn't be Updated.  Message: {e.Message}");
                 return View();
             }
         }
@@ -98,8 +105,7 @@ namespace TL2_TP3.Controllers
         {
             try
             {
-                //orders.DeleteOrder(id);
-                //delivery.DeleteOrder(id);
+                repository.orderRepo.Delete(id);
                 nlog.Info($"Order N°{id} Deleted.");
                 return RedirectToAction(nameof(Index));
             }

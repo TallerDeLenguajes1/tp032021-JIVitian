@@ -19,23 +19,35 @@ namespace TL2_TP3.Repositories.SQLite
             this.connectionString = connectionString;
             this.logger = logger;
         }
-        
-        // TODO: Hacer esta función un predicado para hacer lo que se quiera con los datos recopilados
+
         private Order SetOrder(SQLiteDataReader dataReader)
         {
             return new Order()
             {
-                Number = Convert.ToInt32(dataReader["o.id"]),
-                Observation = dataReader["o.observation"].ToString(),
-                State = Enum.TryParse(dataReader["o.state"].ToString(), out State state)
+                Number = Convert.ToInt32(dataReader["number"]),
+                Observation = dataReader["observation"].ToString(),
+                State = Enum.TryParse(dataReader["state"].ToString(), out State state)
+                        ? state
+                        : State.ToConfirm
+            };
+        }
+
+        // TODO: Hacer esta función un predicado para hacer lo que se quiera con los datos recopilados
+        private Order SetOrderWithClient(SQLiteDataReader dataReader)
+        {
+            return new Order()
+            {
+                Number = Convert.ToInt32(dataReader["number"]),
+                Observation = dataReader["observation"].ToString(),
+                State = Enum.TryParse(dataReader["state"].ToString(), out State state)
                         ? state
                         : State.ToConfirm,
                 Client = new Client()
                 {
-                    Id = Convert.ToInt32(dataReader["c.id"]),
-                    Name = dataReader["c.name"].ToString(),
-                    Address = dataReader["c.address"].ToString(),
-                    Phone = dataReader["c.phone"].ToString()
+                    Id = Convert.ToInt32(dataReader["id"]),
+                    Name = dataReader["name"].ToString(),
+                    Address = dataReader["address"].ToString(),
+                    Phone = dataReader["phone"].ToString()
                 }
             };
         }
@@ -52,13 +64,13 @@ namespace TL2_TP3.Repositories.SQLite
                     string SQLQuery = @"
                                         SELECT * 
                                         FROM Orders o INNER JOIN Clients c
-                                        ON Orders.clientId = Clients.id
+                                        ON o.clientId = c.id
                                         WHERE o.active=1 AND c.active=1
                                       ";
                     SQLiteCommand command = new SQLiteCommand(SQLQuery, conection);
                     SQLiteDataReader DataReader = command.ExecuteReader();
                     while (DataReader.Read())
-                        ordersList.Add(SetOrder(DataReader));
+                        ordersList.Add(SetOrderWithClient(DataReader));
                     conection.Close();
                 }
 
@@ -81,7 +93,7 @@ namespace TL2_TP3.Repositories.SQLite
                 {
                     conexion.Open();
 
-                    string query = "SELECT * FROM Orders WHERE id=@id";
+                    string query = "SELECT * FROM Orders WHERE number=@id";
                     SQLiteCommand command = new SQLiteCommand(query, conexion);
                     command.Parameters.AddWithValue("@id", id);
 
@@ -108,8 +120,8 @@ namespace TL2_TP3.Repositories.SQLite
             {
                 string query = @"
                                INSERT INTO
-                               Orders (observations, state, clientId)
-                               VALUES (@observation, @state, @clientId)
+                               Orders (observation, state)
+                               VALUES (@observation, @state)
                                ";
 
                 using (var conexion = new SQLiteConnection(connectionString))
@@ -119,7 +131,6 @@ namespace TL2_TP3.Repositories.SQLite
                         conexion.Open();
                         command.Parameters.AddWithValue("@observation", data.Observation);
                         command.Parameters.AddWithValue("@state", data.State);
-                        command.Parameters.AddWithValue("@clientId", data.Client.Id);
                         command.ExecuteNonQuery();
                         conexion.Close();
                     }
@@ -138,9 +149,8 @@ namespace TL2_TP3.Repositories.SQLite
                 string query = @"
                                  UPDATE Orders
                                  SET observation = @observation,
-                                     state = @state,
-                                     clientId = @clientId
-                                 WHERE id = @id
+                                     state = @state
+                                 WHERE number = @id
                                ";
 
                 using (var conexion = new SQLiteConnection(connectionString))
@@ -150,7 +160,6 @@ namespace TL2_TP3.Repositories.SQLite
                         conexion.Open();
                         command.Parameters.AddWithValue("@observation", data.Observation);
                         command.Parameters.AddWithValue("@state", data.State);
-                        command.Parameters.AddWithValue("@clientId", data.Client.Id);
                         command.Parameters.AddWithValue("@id", data.Number);
                         command.ExecuteNonQuery();
                         conexion.Close();
@@ -169,7 +178,7 @@ namespace TL2_TP3.Repositories.SQLite
             string query = @"
                             UPDATE Orders
                             SET active = 0
-                            WHERE id = @id
+                            WHERE number = @id
                            ";
 
             try
@@ -189,6 +198,98 @@ namespace TL2_TP3.Repositories.SQLite
             {
                 logger.Error($"Error Message: {ex.Message}. Stack Trace: {ex.StackTrace}");
             }
+        }
+
+        public void SetClient(int clientId, int orderId)
+        {
+            string query = @"
+                            UPDATE Orders
+                            SET clientId=@clientId
+                            WHERE number=@id
+                           ";
+
+            try
+            {
+                using (var conexion = new SQLiteConnection(connectionString))
+                {
+                    using (SQLiteCommand command = new SQLiteCommand(query, conexion))
+                    {
+                        conexion.Open();
+                        command.Parameters.AddWithValue("@clientId", clientId);
+                        command.Parameters.AddWithValue("@id", orderId);
+                        command.ExecuteNonQuery();
+                        conexion.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error($"Error Message: {ex.Message}. Stack Trace: {ex.StackTrace}");
+            }
+        }
+
+        public void SetDeliveryBoy(int deliveryBoyId, int orderId)
+        {
+            string query = @"
+                            UPDATE Orders
+                            SET deliveryBoyId = @deliveryBoyId
+                            WHERE number=@id
+                           ";
+
+            try
+            {
+                using (var conexion = new SQLiteConnection(connectionString))
+                {
+                    using (SQLiteCommand command = new SQLiteCommand(query, conexion))
+                    {
+                        conexion.Open();
+                        command.Parameters.AddWithValue("@deliveryBoyId", deliveryBoyId);
+                        command.Parameters.AddWithValue("@id", orderId);
+                        command.ExecuteNonQuery();
+                        conexion.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error($"Error Message: {ex.Message}. Stack Trace: {ex.StackTrace}");
+            }
+        }
+
+        /**
+         * Get the index of the last register in the DB.
+         * In case of not find any register, returns -1.
+         * 
+         * @return index
+         */
+        public int getLastIndex()
+        {
+            int index = -1;
+
+            try
+            {
+                using (SQLiteConnection conexion = new SQLiteConnection(connectionString))
+                {
+                    conexion.Open();
+
+                    string query = "SELECT number FROM Orders ORDER BY number DESC LIMIT 1";
+                    SQLiteCommand command = new SQLiteCommand(query, conexion);
+
+                    var dataReader = command.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        index = Convert.ToInt32(dataReader["number"]);
+                    }
+
+                    conexion.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error("Error Message: " + ex.Message);
+            }
+
+            return index;
         }
     }
 }

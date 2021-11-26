@@ -20,7 +20,7 @@ namespace TL2_TP3
             //CreateMap<DeliveryBoy, DeliveryBoyPagarViewModel>().ReverseMap();
 
             // Order Map
-            CreateMap<Order, OrderViewModel>().ReverseMap();
+            CreateMap<Order, EditOrderViewModel>().ReverseMap();
 
             // Client Map
             CreateMap<Client, ClientViewModel>().ReverseMap();
