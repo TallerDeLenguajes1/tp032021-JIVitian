@@ -10,7 +10,6 @@ namespace TL2_TP3.Models
     {
         admin,
         user,
-        guest
     }
 
     public class User

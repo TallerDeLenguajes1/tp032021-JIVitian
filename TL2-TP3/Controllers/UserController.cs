@@ -47,20 +47,20 @@ namespace TL2_TP3.Controllers
             }
         }
 
-        // GET: User/Login
+        // GET: User/SignIn
         public ActionResult SignIn()
         {
             return View();
         }
 
-        // POST: User/Login
+        // POST: User/SignIn
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult SignIn(string user, string password)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Home");
             }
             catch
             {
